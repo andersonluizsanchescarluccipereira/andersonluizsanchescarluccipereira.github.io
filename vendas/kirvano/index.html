@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQLite Descomplicado - Página de Vendas</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 0.8s ease-in;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      animation: slideIn 1s ease-out;
+    }
+    h1 {
+      color: #0077cc;
+      text-align: center;
+    }
+    h2 {
+      color: #333;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    .price {
+      font-size: 1.5rem;
+      color: #d9534f;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .cta a {
+      background: #28a745;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .cta a:hover {
+      background: #218838;
+      transform: scale(1.05);
+    }
+    .mockup {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .mockup img {
+      max-width: 90%;
+      border-radius: 10px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    @keyframes slideIn {
+      from {transform: translateY(20px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      .cta a {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📘 SQLite Descomplicado: Do Zero ao CRUD Completo</h1>
+    <p>Aprenda a criar aplicações reais com banco de dados de forma prática, rápida e eficiente — mesmo que você nunca tenha programado antes!</p>
+
+    <div class="mockup">
+      <img src="caminho-para-sua-capa.png" alt="Capa do e-book SQLite Descomplicado">
+    </div>
+
+    <h2>✅ O que você vai aprender:</h2>
+    <ul>
+      <li>Comandos SQL essenciais: SELECT, INSERT, UPDATE, DELETE</li>
+      <li>Como criar bancos de dados e tabelas com SQLite</li>
+      <li>Integração com Python, Java e C#</li>
+      <li>Exemplo com GUI (interface gráfica) usando Tkinter</li>
+      <li>Boas práticas e dicas de otimização</li>
+    </ul>
+
+    <h2>🎯 Para quem é:</h2>
+    <ul>
+      <li>Iniciantes em programação e banco de dados</li>
+      <li>Estudantes e autodidatas</li>
+      <li>Desenvolvedores que querem um guia prático</li>
+    </ul>
+
+    <h2>🎁 Bônus:</h2>
+    <ul>
+      <li>Exercícios práticos</li>
+      <li>Códigos prontos para usar</li>
+      <li>Ferramentas gratuitas e links úteis</li>
+    </ul>
+
+    <div class="price">
+      De: <s>R$ 39,90</s> <br>
+      <strong>Por apenas R$ 19,90</strong>
+    </div>
+
+    <div class="cta">
+      <a href="https://pay.kirvano.com/40c21910-6d5b-4a65-91bd-2fbab3a1e3c3" target="_blank">📥 COMPRAR AGORA</a>
+    </div>
+  </div>
+</body>
+</html>
