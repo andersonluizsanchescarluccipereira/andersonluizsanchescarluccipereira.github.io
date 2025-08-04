@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro de Resgate - Resgate Animal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>🐾 Resgate Animal</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="form.html">Cadastrar Animal</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>📋 Registrar novo resgate</h2>
+    <form id="rescueForm">
+      <input type="text" id="name" placeholder="Nome do animal" required />
+      <select id="type" required>
+        <option value="" disabled selected>Selecione o tipo</option>
+        <option value="Cachorro">Cachorro</option>
+        <option value="Gato">Gato</option>
+        <option value="Outro">Outro</option>
+      </select>
+      <input type="text" id="location" placeholder="Local do resgate" required />
+      <textarea id="description" placeholder="Descrição (opcional)" rows="4"></textarea>
+      <button type="submit">Salvar Resgate</button>
+    </form>
+  </main>
+
+  <script src="js/form.js"></script>
+</body>
+</html>

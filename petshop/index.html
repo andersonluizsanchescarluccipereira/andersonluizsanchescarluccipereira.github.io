@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resgate Animal - Home</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="css/style.css" />
+  <meta name="theme-color" content="#4CAF50"/>
+</head>
+<body>
+  <header>
+    <h1>🐾 Resgate Animal</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="form.html">Cadastrar Animal</a>
+      <a href="#">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h2>Resgate um amigo hoje</h2>
+      <p>Encontre animais que precisam de um novo lar ❤️</p>
+    </section>
+
+    <section class="carousel">
+      <h3>🐶 Em destaque para adoção</h3>
+      <div class="carousel-container" id="carousel">
+        <div class="carousel-item"><img src="assets/dog1.jpg" alt="Cachorro 1"><p>Thor</p></div>
+        <div class="carousel-item"><img src="assets/cat1.jpg" alt="Gato 1"><p>Mia</p></div>
+        <div class="carousel-item"><img src="assets/dog2.jpg" alt="Cachorro 2"><p>Rex</p></div>
+        <div class="carousel-item"><img src="assets/cat2.jpg" alt="Gato 2"><p>Luna</p></div>
+      </div>
+    </section>
+
+    <section class="categories">
+      <h3>🐾 Categorias</h3>
+      <div class="category-grid">
+        <div class="category">Cachorros</div>
+        <div class="category">Gatos</div>
+        <div class="category">Outros</div>
+      </div>
+    </section>
+
+    <section id="recent-rescues">
+      <h3>📋 Últimos resgates</h3>
+      <ul id="rescue-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Resgate Animal</p>
+  </footer>
+
+  <script src="js/carousel.js"></script>
+  <script>
+    // Service Worker para PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registrado!'))
+        .catch(error => console.error('Erro no Service Worker:', error));
+    }
+
+    // Listar resgates recentes do localStorage
+    const rescues = JSON.parse(localStorage.getItem("rescues")) || [];
+    const list = document.getElementById("rescue-list");
+    rescues.reverse().slice(0, 5).forEach(rescue => {
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${rescue.name}</strong> (${rescue.type})<br>
+                      <em>${rescue.location}</em> - ${rescue.date}<br>
+                      <small>${rescue.description || ""}</small>`;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>

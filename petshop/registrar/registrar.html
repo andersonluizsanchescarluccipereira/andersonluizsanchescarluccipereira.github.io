@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resgate Animal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>🐾 Resgate Animal</h1>
+  </header>
+
+  <main>
+    <section id="rescue-form">
+      <h2>Registrar Resgate</h2>
+      <form id="form">
+        <input type="text" id="name" placeholder="Nome do animal" required />
+        <select id="type">
+          <option value="cachorro">Cachorro</option>
+          <option value="gato">Gato</option>
+          <option value="outro">Outro</option>
+        </select>
+        <input type="text" id="location" placeholder="Localização" required />
+        <textarea id="description" placeholder="Descrição" rows="3"></textarea>
+        <button type="submit">Registrar</button>
+      </form>
+    </section>
+
+    <section id="rescue-list">
+      <h2>Animais Resgatados</h2>
+      <ul id="list"></ul>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
