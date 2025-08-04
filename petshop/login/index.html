@@ -40,10 +40,7 @@
     // Inicializa Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
-      const page = () => {
-      const baseURL = window.location.origin + "/petshop/";
-      window.location.href = baseURL + "index.html";
-      };
+      const page = "https://andersonluizsanchescarluccipereira.github.io/petshop/index.html";
 
     // Se já estiver logado, redireciona para home
     auth.onAuthStateChanged(user => {
