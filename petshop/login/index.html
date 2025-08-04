@@ -40,11 +40,12 @@
     // Inicializa Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
+    const page = '../index.html';
 
     // Se já estiver logado, redireciona para home
     auth.onAuthStateChanged(user => {
       if (user) {
-        window.location.href = 'petshop/index.html';
+        window.location.href = page;
       }
     });
 
@@ -55,7 +56,7 @@
       auth.signInWithPopup(provider)
         .then(result => {
           console.log('Usuário logado com Facebook:', result.user);
-          window.location.href = 'petshop/index.html';
+          window.location.href = page;
         })
         .catch(error => {
           console.error('Erro no login com Facebook:', error);
@@ -70,7 +71,7 @@
       auth.signInWithPopup(provider)
         .then(result => {
           console.log('Usuário logado com Google:', result.user);
-          window.location.href = 'petshop/index.html';
+          window.location.href = page;
         })
         .catch(error => {
           console.error('Erro no login com Google:', error);
