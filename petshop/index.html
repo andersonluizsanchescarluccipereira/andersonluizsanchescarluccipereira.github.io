@@ -7,11 +7,112 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="css/style.css" />
   <meta name="theme-color" content="#4CAF50" />
+  <style>
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #4CAF50;
+      padding: 10px 20px;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #4CAF50;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        display: none;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    .carousel {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-container {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .carousel-item {
+      flex: 0 0 auto;
+      width: 150px;
+      text-align: center;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .category-grid {
+      display: flex;
+      gap: 10px;
+    }
+
+    .category {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      flex: 1;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      padding: 10px;
+      background: #f1f1f1;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>🐾 Resgate Animal</h1>
-    <nav>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav id="navMenu">
       <a href="index.html">Início</a>
       <a href="form.html">Cadastrar Animal</a>
       <a href="#" id="logoutBtn">Sair</a>
@@ -73,10 +174,8 @@
           carousel.appendChild(item);
         }
 
-        // Duplicar para loop infinito
         carousel.innerHTML += carousel.innerHTML;
 
-        // Scroll infinito
         let paused = false;
         let speed = 0.5;
 
@@ -129,7 +228,6 @@
         });
     });
 
-    // Últimos resgates
     const rescues = JSON.parse(localStorage.getItem("rescues")) || [];
     const list = document.getElementById("rescue-list");
     rescues.reverse().slice(0, 5).forEach(rescue => {
@@ -138,6 +236,11 @@
                       <em>${rescue.location}</em> - ${rescue.date}<br>
                       <small>${rescue.description || ""}</small>`;
       list.appendChild(li);
+    });
+
+    // Menu hambúrguer
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      document.getElementById("navMenu").classList.toggle("show");
     });
 
     // Service Worker
