@@ -25,13 +25,8 @@
     </section>
 
     <section class="carousel">
-      <h3>🐶 Em destaque para adoção</h3>
-      <div class="carousel-container" id="carousel">
-        <div class="carousel-item"><img src="assets/dog1.jpg" alt="Cachorro 1" /><p>Thor</p></div>
-        <div class="carousel-item"><img src="assets/cat1.jpg" alt="Gato 1" /><p>Mia</p></div>
-        <div class="carousel-item"><img src="assets/dog2.jpg" alt="Cachorro 2" /><p>Rex</p></div>
-        <div class="carousel-item"><img src="assets/cat2.jpg" alt="Gato 2" /><p>Luna</p></div>
-      </div>
+    <h3>🐶 Em destaque para adoção</h3>
+    <div class="carousel-container" id="carousel"></div>
     </section>
 
     <section class="categories">
@@ -52,6 +47,25 @@
   <footer>
     <p>&copy; 2025 Resgate Animal</p>
   </footer>
+
+  <script>
+  const nomes = ["Thor", "Luna", "Mia", "Rex", "Bidu", "Mel", "Bart", "Simba", "Toby", "Nina", "Bob", "Lola", "Max", "Amora", "Zeca", "Belinha", "Fred", "Frida", "Theo", "Meg"];
+  const carousel = document.getElementById("carousel");
+
+  for (let i = 0; i < nomes.length; i++) {
+    const animal = nomes[i];
+    const isCat = i % 2 === 0;
+    const imgURL = `https://source.unsplash.com/200x200/?${isCat ? "cat" : "dog"}&sig=${i}`;
+
+    const item = document.createElement("div");
+    item.className = "carousel-item";
+    item.innerHTML = `<img src="${imgURL}" alt="${animal}" /><p>${animal}</p>`;
+    carousel.appendChild(item);
+  }
+
+  // Duplicar para efeito de loop infinito
+  carousel.innerHTML += carousel.innerHTML;
+</script>
 
   <!-- Firebase SDKs compat -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
