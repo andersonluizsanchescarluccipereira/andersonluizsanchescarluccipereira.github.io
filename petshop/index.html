@@ -7,6 +7,99 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="css/style.css" />
   <meta name="theme-color" content="#4CAF50" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: #f0f0f0;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .carousel {
+      padding: 20px;
+    }
+
+    .carousel h3 {
+      margin-bottom: 10px;
+    }
+
+    .carousel-container {
+      display: flex;
+      gap: 16px;
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-item {
+      flex: 0 0 auto;
+      width: 180px;
+      text-align: center;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .categories {
+      padding: 20px;
+    }
+
+    .category-grid {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .category {
+      background: #e0e0e0;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #recent-rescues {
+      padding: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #f0f0f0;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -14,7 +107,7 @@
     <nav>
       <a href="index.html">Início</a>
       <a href="form.html">Cadastrar Animal</a>
-      <a href="#" id="logoutBtn" style="cursor:pointer;">Sair</a>
+      <a href="#" id="logoutBtn">Sair</a>
     </nav>
   </header>
 
@@ -48,16 +141,16 @@
     <p>&copy; 2025 Resgate Animal</p>
   </footer>
 
-  <!-- Firebase SDKs compat -->
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <script src="js/carousel.js"></script>
 
   <script>
-    const nomes = ["Thor", "Luna", "Mia", "Rex", "Bidu", "Mel", "Bart", "Simba", "Toby", "Nina", "Bob", "Lola", "Max", "Amora", "Zeca", "Belinha", "Fred", "Frida", "Theo", "Meg"];
+    const nomes = ["Thor", "Luna", "Mia", "Rex", "Bidu", "Mel", "Bart", "Simba", "Toby", "Nina",
+                   "Bob", "Lola", "Max", "Amora", "Zeca", "Belinha", "Fred", "Frida", "Theo", "Meg"];
+
     const carousel = document.getElementById("carousel");
 
-    // Pega 20 imagens de cachorro e associa com os nomes
     fetch('https://dog.ceo/api/breeds/image/random/20')
       .then(res => res.json())
       .then(data => {
@@ -73,11 +166,30 @@
           carousel.appendChild(item);
         }
 
-        // Duplicar para efeito de loop infinito
+        // Duplicar para loop infinito
         carousel.innerHTML += carousel.innerHTML;
+
+        // Scroll infinito
+        let paused = false;
+        let speed = 0.5;
+
+        carousel.addEventListener("mouseenter", () => paused = true);
+        carousel.addEventListener("mouseleave", () => paused = false);
+
+        function autoScroll() {
+          if (!paused) {
+            carousel.scrollLeft += speed;
+            if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
+              carousel.scrollLeft = 0;
+            }
+          }
+          requestAnimationFrame(autoScroll);
+        }
+
+        autoScroll();
       });
 
-    // Firebase
+    // Firebase Auth
     const firebaseConfig = {
       apiKey: "AIzaSyAAAGxH2NxghUnSiJewMfWPchLbvayvM2w",
       authDomain: "resgateanimal-d6586.firebaseapp.com",
@@ -91,34 +203,12 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // Verifica login
     auth.onAuthStateChanged(user => {
       if (!user) {
         window.location.href = 'login/index.html';
-      } else {
-        console.log('Usuário logado:', user.displayName || user.email);
       }
     });
 
-    // Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker registrado!'))
-        .catch(err => console.error('Erro no Service Worker:', err));
-    }
-
-    // Últimos resgates
-    const rescues = JSON.parse(localStorage.getItem("rescues")) || [];
-    const list = document.getElementById("rescue-list");
-    rescues.reverse().slice(0, 5).forEach(rescue => {
-      const li = document.createElement("li");
-      li.innerHTML = `<strong>${rescue.name}</strong> (${rescue.type})<br>
-                      <em>${rescue.location}</em> - ${rescue.date}<br>
-                      <small>${rescue.description || ""}</small>`;
-      list.appendChild(li);
-    });
-
-    // Logout
     document.getElementById('logoutBtn').addEventListener('click', (e) => {
       e.preventDefault();
       auth.signOut()
@@ -131,6 +221,24 @@
           alert('Erro ao sair. Tente novamente.');
         });
     });
+
+    // Últimos resgates
+    const rescues = JSON.parse(localStorage.getItem("rescues")) || [];
+    const list = document.getElementById("rescue-list");
+    rescues.reverse().slice(0, 5).forEach(rescue => {
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${rescue.name}</strong> (${rescue.type})<br>
+                      <em>${rescue.location}</em> - ${rescue.date}<br>
+                      <small>${rescue.description || ""}</small>`;
+      list.appendChild(li);
+    });
+
+    // Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registrado!'))
+        .catch(err => console.error('Erro no Service Worker:', err));
+    }
   </script>
 </body>
 </html>
