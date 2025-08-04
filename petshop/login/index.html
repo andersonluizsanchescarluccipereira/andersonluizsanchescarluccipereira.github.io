@@ -44,7 +44,7 @@
     // Se já estiver logado, redireciona para home
     auth.onAuthStateChanged(user => {
       if (user) {
-        window.location.href = '/index.html';
+        window.location.href = 'petshop/index.html';
       }
     });
 
@@ -55,7 +55,7 @@
       auth.signInWithPopup(provider)
         .then(result => {
           console.log('Usuário logado com Facebook:', result.user);
-          window.location.href = '/index.html';
+          window.location.href = 'petshop/index.html';
         })
         .catch(error => {
           console.error('Erro no login com Facebook:', error);
@@ -70,7 +70,7 @@
       auth.signInWithPopup(provider)
         .then(result => {
           console.log('Usuário logado com Google:', result.user);
-          window.location.href = '/index.html';
+          window.location.href = 'petshop/index.html';
         })
         .catch(error => {
           console.error('Erro no login com Google:', error);
