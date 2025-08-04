@@ -11,8 +11,13 @@
 <body>
   <div class="login-container">
     <h1>🐾 Resgate Animal</h1>
+
     <button id="fbLoginBtn" class="fb-login-btn" aria-label="Entrar com Facebook">
       Entrar com Facebook
+    </button>
+
+    <button id="googleLoginBtn" class="google-login-btn" aria-label="Entrar com Google" style="margin-top: 10px;">
+      Entrar com Google
     </button>
   </div>
 
@@ -43,18 +48,33 @@
       }
     });
 
-    // Botão login com Facebook
+    // Login com Facebook
     document.getElementById('fbLoginBtn').addEventListener('click', () => {
       const provider = new firebase.auth.FacebookAuthProvider();
 
       auth.signInWithPopup(provider)
         .then(result => {
-          console.log('Usuário logado:', result.user);
+          console.log('Usuário logado com Facebook:', result.user);
           window.location.href = '/index.html';
         })
         .catch(error => {
-          console.error('Erro no login:', error);
+          console.error('Erro no login com Facebook:', error);
           alert('Erro ao entrar com Facebook. Verifique as permissões ou tente novamente.');
+        });
+    });
+
+    // Login com Google
+    document.getElementById('googleLoginBtn').addEventListener('click', () => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      auth.signInWithPopup(provider)
+        .then(result => {
+          console.log('Usuário logado com Google:', result.user);
+          window.location.href = '/index.html';
+        })
+        .catch(error => {
+          console.error('Erro no login com Google:', error);
+          alert('Erro ao entrar com Google. Tente novamente.');
         });
     });
   </script>
