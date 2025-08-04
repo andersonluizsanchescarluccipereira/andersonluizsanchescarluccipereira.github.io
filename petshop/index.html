@@ -25,8 +25,8 @@
     </section>
 
     <section class="carousel">
-    <h3>🐶 Em destaque para adoção</h3>
-    <div class="carousel-container" id="carousel"></div>
+      <h3>🐶 Em destaque para adoção</h3>
+      <div class="carousel-container" id="carousel"></div>
     </section>
 
     <section class="categories">
@@ -48,33 +48,36 @@
     <p>&copy; 2025 Resgate Animal</p>
   </footer>
 
-  <script>
-  const nomes = ["Thor", "Luna", "Mia", "Rex", "Bidu", "Mel", "Bart", "Simba", "Toby", "Nina", "Bob", "Lola", "Max", "Amora", "Zeca", "Belinha", "Fred", "Frida", "Theo", "Meg"];
-  const carousel = document.getElementById("carousel");
-
-  for (let i = 0; i < nomes.length; i++) {
-    const animal = nomes[i];
-    const isCat = i % 2 === 0;
-    const imgURL = `https://source.unsplash.com/200x200/?${isCat ? "cat" : "dog"}&sig=${i}`;
-
-    const item = document.createElement("div");
-    item.className = "carousel-item";
-    item.innerHTML = `<img src="${imgURL}" alt="${animal}" /><p>${animal}</p>`;
-    carousel.appendChild(item);
-  }
-
-  // Duplicar para efeito de loop infinito
-  carousel.innerHTML += carousel.innerHTML;
-</script>
-
   <!-- Firebase SDKs compat -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-
   <script src="js/carousel.js"></script>
 
   <script>
-    // Config Firebase - substitua pelos seus dados reais
+    const nomes = ["Thor", "Luna", "Mia", "Rex", "Bidu", "Mel", "Bart", "Simba", "Toby", "Nina", "Bob", "Lola", "Max", "Amora", "Zeca", "Belinha", "Fred", "Frida", "Theo", "Meg"];
+    const carousel = document.getElementById("carousel");
+
+    // Pega 20 imagens de cachorro e associa com os nomes
+    fetch('https://dog.ceo/api/breeds/image/random/20')
+      .then(res => res.json())
+      .then(data => {
+        const imagens = data.message;
+
+        for (let i = 0; i < nomes.length; i++) {
+          const animal = nomes[i];
+          const imgURL = imagens[i];
+
+          const item = document.createElement("div");
+          item.className = "carousel-item";
+          item.innerHTML = `<img src="${imgURL}" alt="${animal}" /><p>${animal}</p>`;
+          carousel.appendChild(item);
+        }
+
+        // Duplicar para efeito de loop infinito
+        carousel.innerHTML += carousel.innerHTML;
+      });
+
+    // Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyAAAGxH2NxghUnSiJewMfWPchLbvayvM2w",
       authDomain: "resgateanimal-d6586.firebaseapp.com",
@@ -85,11 +88,10 @@
       measurementId: "G-PTGVZXYMGD"
     };
 
-    // Inicializa Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // Verifica se está logado, senão redireciona para login.html
+    // Verifica login
     auth.onAuthStateChanged(user => {
       if (!user) {
         window.location.href = 'login/index.html';
@@ -98,14 +100,14 @@
       }
     });
 
-    // Registro do service worker para PWA
+    // Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('Service Worker registrado!'))
         .catch(err => console.error('Erro no Service Worker:', err));
     }
 
-    // Listar últimos resgates do localStorage
+    // Últimos resgates
     const rescues = JSON.parse(localStorage.getItem("rescues")) || [];
     const list = document.getElementById("rescue-list");
     rescues.reverse().slice(0, 5).forEach(rescue => {
@@ -116,7 +118,7 @@
       list.appendChild(li);
     });
 
-    // Botão logout
+    // Logout
     document.getElementById('logoutBtn').addEventListener('click', (e) => {
       e.preventDefault();
       auth.signOut()
