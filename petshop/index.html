@@ -2,11 +2,11 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Resgate Animal - Home</title>
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="css/style.css" />
-  <meta name="theme-color" content="#4CAF50"/>
+  <meta name="theme-color" content="#4CAF50" />
 </head>
 <body>
   <header>
@@ -14,7 +14,7 @@
     <nav>
       <a href="index.html">Início</a>
       <a href="form.html">Cadastrar Animal</a>
-      <a href="#">Login</a>
+      <a href="#" id="logoutBtn" style="cursor:pointer;">Sair</a>
     </nav>
   </header>
 
@@ -27,10 +27,10 @@
     <section class="carousel">
       <h3>🐶 Em destaque para adoção</h3>
       <div class="carousel-container" id="carousel">
-        <div class="carousel-item"><img src="assets/dog1.jpg" alt="Cachorro 1"><p>Thor</p></div>
-        <div class="carousel-item"><img src="assets/cat1.jpg" alt="Gato 1"><p>Mia</p></div>
-        <div class="carousel-item"><img src="assets/dog2.jpg" alt="Cachorro 2"><p>Rex</p></div>
-        <div class="carousel-item"><img src="assets/cat2.jpg" alt="Gato 2"><p>Luna</p></div>
+        <div class="carousel-item"><img src="assets/dog1.jpg" alt="Cachorro 1" /><p>Thor</p></div>
+        <div class="carousel-item"><img src="assets/cat1.jpg" alt="Gato 1" /><p>Mia</p></div>
+        <div class="carousel-item"><img src="assets/dog2.jpg" alt="Cachorro 2" /><p>Rex</p></div>
+        <div class="carousel-item"><img src="assets/cat2.jpg" alt="Gato 2" /><p>Luna</p></div>
       </div>
     </section>
 
@@ -53,16 +53,45 @@
     <p>&copy; 2025 Resgate Animal</p>
   </footer>
 
+  <!-- Firebase SDKs compat -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
   <script src="js/carousel.js"></script>
+
   <script>
-    // Service Worker para PWA
+    // Config Firebase - substitua pelos seus dados reais
+    const firebaseConfig = {
+      apiKey: "AIzaSyAAAGxH2NxghUnSiJewMfWPchLbvayvM2w",
+      authDomain: "resgateanimal-d6586.firebaseapp.com",
+      projectId: "resgateanimal-d6586",
+      storageBucket: "resgateanimal-d6586.firebasestorage.app",
+      messagingSenderId: "534664260528",
+      appId: "1:534664260528:web:48e42e641701dab32ac475",
+      measurementId: "G-PTGVZXYMGD"
+    };
+
+    // Inicializa Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Verifica se está logado, senão redireciona para login.html
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = 'login/index.html';
+      } else {
+        console.log('Usuário logado:', user.displayName || user.email);
+      }
+    });
+
+    // Registro do service worker para PWA
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('Service Worker registrado!'))
-        .catch(error => console.error('Erro no Service Worker:', error));
+        .catch(err => console.error('Erro no Service Worker:', err));
     }
 
-    // Listar resgates recentes do localStorage
+    // Listar últimos resgates do localStorage
     const rescues = JSON.parse(localStorage.getItem("rescues")) || [];
     const list = document.getElementById("rescue-list");
     rescues.reverse().slice(0, 5).forEach(rescue => {
@@ -71,6 +100,20 @@
                       <em>${rescue.location}</em> - ${rescue.date}<br>
                       <small>${rescue.description || ""}</small>`;
       list.appendChild(li);
+    });
+
+    // Botão logout
+    document.getElementById('logoutBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      auth.signOut()
+        .then(() => {
+          alert('Você saiu com sucesso!');
+          window.location.href = 'login/index.html';
+        })
+        .catch(error => {
+          console.error('Erro ao sair:', error);
+          alert('Erro ao sair. Tente novamente.');
+        });
     });
   </script>
 </body>

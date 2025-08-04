@@ -2,19 +2,61 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login - Resgate Animal</title>
+  <meta name="theme-color" content="#4CAF50" />
   <link rel="stylesheet" href="css/login.css" />
+  <link rel="manifest" href="manifest.json" />
 </head>
 <body>
   <div class="login-container">
     <h1>🐾 Resgate Animal</h1>
-    <form class="login-form">
-      <input type="email" placeholder="E-mail" required />
-      <input type="password" placeholder="Senha" required />
-      <button type="submit">Entrar</button>
-      <p class="signup-link">Não tem conta? <a href="#">Cadastre-se</a></p>
-    </form>
+    <button id="fbLoginBtn" class="fb-login-btn" aria-label="Entrar com Facebook">
+      Entrar com Facebook
+    </button>
   </div>
+
+  <!-- Firebase App (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+  <script>
+    // Config Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAAAGxH2NxghUnSiJewMfWPchLbvayvM2w",
+      authDomain: "resgateanimal-d6586.firebaseapp.com",
+      projectId: "resgateanimal-d6586",
+      storageBucket: "resgateanimal-d6586.firebasestorage.app",
+      messagingSenderId: "534664260528",
+      appId: "1:534664260528:web:48e42e641701dab32ac475",
+      measurementId: "G-PTGVZXYMGD"
+    };
+
+    // Inicializa Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Se já estiver logado, redireciona para home
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        window.location.href = 'index.html';
+      }
+    });
+
+    // Botão login com Facebook
+    document.getElementById('fbLoginBtn').addEventListener('click', () => {
+      const provider = new firebase.auth.FacebookAuthProvider();
+
+      auth.signInWithPopup(provider)
+        .then(result => {
+          console.log('Usuário logado:', result.user);
+          window.location.href = 'index.html';
+        })
+        .catch(error => {
+          console.error('Erro no login:', error);
+          alert('Erro ao entrar com Facebook. Verifique as permissões ou tente novamente.');
+        });
+    });
+  </script>
 </body>
 </html>
