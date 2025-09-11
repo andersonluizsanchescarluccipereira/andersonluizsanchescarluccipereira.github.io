@@ -3,8 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Matemática Animado</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Jogo da Matemática</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #fffae3, #f7c59f);
+            overflow: hidden;
+        }
+
+        .screen {
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h1 { font-size: 2.5em; margin-bottom: 20px; }
+        h2 { font-size: 2em; margin: 20px 0; }
+        h3 { font-size: 1.3em; margin-bottom: 20px; }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            margin: 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.1s;
+            border: none;
+        }
+
+        button:hover { transform: scale(1.05); }
+
+        .level-btn { background-color: #FF6F61; color: white; }
+        .level-btn:hover { background-color: #ff3b2f; }
+
+        .option-btn {
+            width: 80%;
+            margin: 8px 0;
+            padding: 15px;
+            font-size: 1.5em;
+            border-radius: 15px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: 3px solid #2E7D32;
+            transition: transform 0.1s;
+        }
+        .option-btn:hover { background-color: #81C784; }
+
+        #score { font-size: 1.5em; margin-bottom: 10px; }
+        #feedback { font-size: 1.8em; margin-top: 20px; min-height: 50px; }
+
+        #confetti-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
     <!-- Tela inicial -->
@@ -30,7 +98,190 @@
         <button id="restart-btn">Jogar Novamente</button>
     </div>
 
-    
-    <script src="script.js"></script>
+    <!-- Sons -->
+    <audio id="applause-sound" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
+    <audio id="fail-sound" src="https://www.fesliyanstudios.com/play-mp3/6678"></audio>
+
+    <script>
+        const startScreen = document.getElementById('start-screen');
+        const levelButtonsContainer = document.getElementById('level-buttons');
+        const gameScreen = document.getElementById('game-screen');
+        const questionEl = document.getElementById('question');
+        const optionsEl = document.getElementById('options');
+        const scoreEl = document.getElementById('score');
+        const feedbackEl = document.getElementById('feedback');
+        const gameOverScreen = document.getElementById('game-over-screen');
+        const finalScoreEl = document.getElementById('final-score');
+        const restartBtn = document.getElementById('restart-btn');
+
+        const applauseSound = document.getElementById('applause-sound');
+        const failSound = document.getElementById('fail-sound');
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let confettiParticles = [];
+
+        let score = 0;
+        let correctAnswer;
+        let level = 3; 
+        const levels = [3,4,5,6,7,8];
+
+        // ---------------- Inicialização ----------------
+        function initLevelButtons() {
+            levelButtonsContainer.innerHTML = ""; 
+            levels.forEach(lvl => {
+                const btn = document.createElement('button');
+                btn.textContent = `${lvl} anos`;
+                btn.classList.add('level-btn');
+                btn.onclick = () => {
+                    level = lvl;
+                    startScreen.classList.add('hidden');
+                    gameOverScreen.classList.add('hidden');
+                    startGame();
+                };
+                levelButtonsContainer.appendChild(btn);
+            });
+        }
+
+        // ---------------- Dificuldade ----------------
+        function setDifficulty(level) {
+            switch(level) {
+                case 3: return { ops: ['+'], maxNum: 5, options: 2 };
+                case 4: return { ops: ['+'], maxNum: 10, options: 3 };
+                case 5: return { ops: ['+','-'], maxNum: 10, options: 3 };
+                case 6: return { ops: ['+','-'], maxNum: 20, options: 4 };
+                case 7: return { ops: ['+','-','*'], maxNum: 50, options: 4 };
+                case 8: return { ops: ['+','-','*','/'], maxNum: 100, options: 5 };
+                default: return { ops: ['+'], maxNum: 10, options: 3 };
+            }
+        }
+
+        // ---------------- Geração de perguntas ----------------
+        function startGame() {
+            score = 0;
+            scoreEl.textContent = `Pontuação: ${score}`;
+            feedbackEl.textContent = '';
+            gameScreen.classList.remove('hidden');
+            generateQuestion();
+        }
+
+        function generateQuestion() {
+            const difficulty = setDifficulty(level);
+            const a = Math.floor(Math.random() * (difficulty.maxNum + 1));
+            const b = Math.floor(Math.random() * (difficulty.maxNum + 1));
+            const op = difficulty.ops[Math.floor(Math.random() * difficulty.ops.length)];
+
+            switch(op) {
+                case '+': correctAnswer = a + b; break;
+                case '-': correctAnswer = a - b; break;
+                case '*': correctAnswer = a * b; break;
+                case '/': correctAnswer = b !== 0 ? Math.floor(a / b) : 0; break;
+            }
+
+            const options = [correctAnswer];
+            while(options.length < difficulty.options) {
+                let rand = Math.floor(Math.random() * (difficulty.maxNum * 2 + 1));
+                if(!options.includes(rand)) options.push(rand);
+            }
+
+            shuffleArray(options);
+            questionEl.textContent = `${a} ${op} ${b} = ?`;
+            optionsEl.innerHTML = '';
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.textContent = opt;
+                btn.classList.add('option-btn');
+                btn.onclick = () => checkAnswer(opt);
+                optionsEl.appendChild(btn);
+            });
+        }
+
+        // ---------------- Confete ----------------
+        function createConfetti() {
+            for(let i=0;i<100;i++){
+                confettiParticles.push({
+                    x: Math.random()*canvas.width,
+                    y: Math.random()*canvas.height,
+                    r: Math.random()*6+4,
+                    d: Math.random()*100,
+                    color: `hsl(${Math.random()*360},100%,50%)`,
+                    tilt: Math.random()*10-10
+                });
+            }
+        }
+
+        function drawConfetti() {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            confettiParticles.forEach(p => {
+                ctx.beginPath();
+                ctx.lineWidth = p.r;
+                ctx.strokeStyle = p.color;
+                ctx.moveTo(p.x + p.tilt + p.r/2, p.y);
+                ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r/2);
+                ctx.stroke();
+            });
+            updateConfetti();
+        }
+
+        function updateConfetti() {
+            for(let i=0;i<confettiParticles.length;i++){
+                let p = confettiParticles[i];
+                p.y += Math.cos(0.1 + p.d) + 1 + p.r/2;
+                p.x += Math.sin(0.1) * 2;
+                if(p.y > canvas.height){ confettiParticles.splice(i,1); i--; }
+            }
+        }
+
+        function animateConfetti(){
+            if(confettiParticles.length>0){
+                drawConfetti();
+                requestAnimationFrame(animateConfetti);
+            }
+        }
+
+        // ---------------- Resposta ----------------
+        function checkAnswer(selected) {
+            if (selected === correctAnswer) {
+                score++;
+                feedbackEl.textContent = "⭐ Muito bem! ⭐";
+                scoreEl.textContent = `Pontuação: ${score}`;
+                applauseSound.currentTime = 0;
+                applauseSound.play();
+                createConfetti();
+                animateConfetti();
+                if(score % 3 === 0) level = Math.min(8, level+1); 
+                setTimeout(generateQuestion, 1200);
+            } else {
+                failSound.currentTime = 0;
+                failSound.play();
+                gameOver();
+            }
+        }
+
+        function gameOver() {
+            gameScreen.classList.add('hidden');
+            gameOverScreen.classList.remove('hidden');
+            finalScoreEl.textContent = `Sua pontuação: ${score}`;
+        }
+
+        restartBtn.onclick = () => {
+            gameOverScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        };
+
+        // embaralhar opções
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // ---------------- Start ----------------
+        window.addEventListener("DOMContentLoaded", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initLevelButtons();
+        });
+    </script>
 </body>
 </html>
