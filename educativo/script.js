@@ -20,20 +20,33 @@ let correctAnswer;
 let level = 3; 
 const levels = [3,4,5,6,7,8];
 
+// ... (todo código que já te passei antes)
+
 // ---------------- Inicialização ----------------
 function initLevelButtons() {
+    levelButtonsContainer.innerHTML = ""; // limpa antes de criar
     levels.forEach(lvl => {
         const btn = document.createElement('button');
         btn.textContent = `${lvl} anos`;
         btn.classList.add('level-btn');
         btn.onclick = () => {
             level = lvl;
-            startScreen.classList.add('hidden');
+            startScreen.classList.add('hidden'); // esconde tela inicial
+            gameOverScreen.classList.add('hidden'); // esconde tela de fim se estiver ativa
             startGame();
         };
         levelButtonsContainer.appendChild(btn);
     });
 }
+
+// ---------------- Start ----------------
+window.onload = () => {
+    // Garante que o canvas confete pega o tamanho certo
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    initLevelButtons(); // <-- ISSO FALTAVA
+};
 
 // ---------------- Dificuldade ----------------
 function setDifficulty(level) {
