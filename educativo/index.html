@@ -3,27 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Matemática Lúdico</title>
+    <title>Jogo da Matemática Animado</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Tela inicial -->
     <div id="start-screen" class="screen">
         <h1>🎉 Jogo da Matemática 🎉</h1>
-        <button id="start-btn">Começar</button>
+        <h3>Escolha a idade da criança:</h3>
+        <div id="level-buttons"></div>
     </div>
 
+    <!-- Tela do jogo -->
     <div id="game-screen" class="screen hidden">
         <div id="score">Pontuação: 0</div>
         <h2 id="question"></h2>
         <div id="options"></div>
         <div id="feedback"></div>
+        <canvas id="confetti-canvas"></canvas>
     </div>
 
+    <!-- Tela de game over -->
     <div id="game-over-screen" class="screen hidden">
         <h1>Fim de Jogo! 😢</h1>
         <h2 id="final-score"></h2>
         <button id="restart-btn">Jogar Novamente</button>
     </div>
+
+    <!-- Sons -->
+    <audio id="applause-sound" src="assets/applause.mp3"></audio>
+    <audio id="fail-sound" src="assets/fail.mp3"></audio>
 
     <script src="script.js"></script>
 </body>
