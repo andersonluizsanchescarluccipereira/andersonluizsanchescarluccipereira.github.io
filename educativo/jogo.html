@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Jogo dos Emojis</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#333333">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #fdf6e3;
+    padding: 20px;
+  }
+  h1 { color: #333; }
+  #game-area { display: none; margin-top: 20px; }
+  #emoji { font-size: 100px; margin: 20px; }
+  input { font-size: 20px; padding: 10px; width: 250px; }
+  button { font-size: 18px; padding: 10px 20px; margin: 10px; cursor: pointer; }
+  #feedback { font-size: 50px; margin: 20px; }
+  #timer, #score { font-size: 20px; margin: 10px; }
+</style>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+</head>
+<body>
+
+<h1>🥗 Jogo dos Emojis</h1>
+<p>Escolha o modo de jogo:</p>
+<button onclick="startGame('easy')">Modo Fácil</button>
+<button onclick="startGame('hard')">Modo Difícil</button>
+
+<div id="game-area">
+  <div id="timer">⏱️ Tempo: 0s</div>
+  <div id="score">⭐ Pontos: 0</div>
+  <div id="emoji"></div>
+  <p id="hint"></p>
+  <input type="text" id="answer" placeholder="Digite o nome">
+  <br>
+  <button onclick="checkAnswer()">Responder</button>
+  <div id="feedback"></div>
+</div>
+
+<script>
+const emojis = [
+  {emoji:"🥑", nome:"abacate"}, {emoji:"🍍", nome:"abacaxi"}, {emoji:"🍏", nome:"maçã verde"},
+  {emoji:"🍎", nome:"maça vermelha"}, {emoji:"🫒", nome:"azeitona"}, {emoji:"🍌", nome:"banana"},
+  {emoji:"🍑", nome:"pêssego"}, {emoji:"🥦", nome:"brócolis"}, {emoji:"🥕", nome:"cenoura"},
+  {emoji:"🥥", nome:"coco"}, {emoji:"🥒", nome:"pepino"}, {emoji:"🍒", nome:"cereja"},
+  {emoji:"🌽", nome:"milho"}, {emoji:"🫛", nome:"ervilha"}, {emoji:"🍓", nome:"morango"},
+  {emoji:"🧄", nome:"alho"}, {emoji:"🍋", nome:"limão"}, {emoji:"🍈", nome:"melão"},
+  {emoji:"🍉", nome:"melancia"}, {emoji:"🥭", nome:"manga"}, {emoji:"🍊", nome:"tangerina"},
+  {emoji:"🍄", nome:"cogumelo"}, {emoji:"🍐", nome:"pera"}, {emoji:"🫐", nome:"mirtilo"},
+  {emoji:"🧅", nome:"cebola"}, {emoji:"🥔", nome:"batata"}, {emoji:"🍠", nome:"batata doce"},
+  {emoji:"🌶️", nome:"pimenta"}, {emoji:"🥬", nome:"alface"}, {emoji:"🍆", nome:"berinjela"},
+  {emoji:"🥝", nome:"kiwi"}, {emoji:"🍇", nome:"uva"}, {emoji:"🍅", nome:"tomate"}
+];
+
+let mode = "easy", current = 0, points = 0, startTime, timerInterval;
+
+function normalize(str) {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+function startGame(selectedMode) {
+  mode = selectedMode; current = 0; points = 0;
+  document.getElementById("score").innerText = "⭐ Pontos: 0";
+  document.getElementById("feedback").innerText = "";
+  document.getElementById("game-area").style.display = "block";
+  startTime = Date.now();
+  timerInterval = setInterval(updateTimer, 1000);
+  showEmoji();
+}
+
+function updateTimer() {
+  let elapsed = Math.floor((Date.now() - startTime)/1000);
+  document.getElementById("timer").innerText = "⏱️ Tempo: " + elapsed + "s";
+}
+
+function showEmoji() {
+  const item = emojis[current];
+  document.getElementById("emoji").innerText = item.emoji;
+  let hint = item.nome.length > 6 ? item.nome.slice(0,3) : item.nome.slice(0,2);
+  document.getElementById("hint").innerText = "Dica: " + hint + "...";
+  document.getElementById("answer").value = "";
+  document.getElementById("answer").focus();
+}
+
+function checkAnswer() {
+  const answer = normalize(document.getElementById("answer").value.trim());
+  const correct = normalize(emojis[current].nome);
+
+  if (answer === correct) {
+    points++;
+    document.getElementById("score").innerText = "⭐ Pontos: " + points;
+    document.getElementById("feedback").innerText = "😃";
+    current++;
+    if (current >= emojis.length) {
+      clearInterval(timerInterval);
+      let totalTime = Math.floor((Date.now()-startTime)/1000);
+      document.getElementById("feedback").innerText = "🏆 Parabéns! Concluído em " + totalTime + "s";
+    } else {
+      showEmoji();
+    }
+  } else {
+    document.getElementById("feedback").innerText = "😢";
+    if (mode === "hard") { current = 0; points = 0; document.getElementById("score").innerText = "⭐ Pontos: 0"; showEmoji(); }
+  }
+}
+</script>
+</body>
+</html>
