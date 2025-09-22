@@ -24,9 +24,7 @@
             position: relative;
         }
 
-        .hidden {
-            display: none;
-        }
+        .hidden { display: none; }
 
         h1 { font-size: 2.5em; margin-bottom: 20px; }
         h2 { font-size: 2em; margin: 20px 0; }
@@ -61,6 +59,12 @@
         }
         .option-btn:hover { background-color: #81C784; }
 
+        .back-btn {
+            background-color: #555;
+            color: white;
+        }
+        .back-btn:hover { background-color: #333; }
+
         #score { font-size: 1.5em; margin-bottom: 10px; }
         #feedback { font-size: 1.8em; margin-top: 20px; min-height: 50px; }
 
@@ -88,6 +92,7 @@
         <h2 id="question"></h2>
         <div id="options"></div>
         <div id="feedback"></div>
+        <button id="back-btn" class="back-btn">⬅ Voltar</button>
         <canvas id="confetti-canvas"></canvas>
     </div>
 
@@ -96,6 +101,7 @@
         <h1>Fim de Jogo! 😢</h1>
         <h2 id="final-score"></h2>
         <button id="restart-btn">Jogar Novamente</button>
+        <button id="back-btn-over" class="back-btn">⬅ Voltar</button>
     </div>
 
     <!-- Sons -->
@@ -113,6 +119,8 @@
         const gameOverScreen = document.getElementById('game-over-screen');
         const finalScoreEl = document.getElementById('final-score');
         const restartBtn = document.getElementById('restart-btn');
+        const backBtn = document.getElementById('back-btn');
+        const backBtnOver = document.getElementById('back-btn-over');
 
         const applauseSound = document.getElementById('applause-sound');
         const failSound = document.getElementById('fail-sound');
@@ -267,6 +275,16 @@
             gameOverScreen.classList.add('hidden');
             startScreen.classList.remove('hidden');
         };
+
+        // Botão voltar (tanto no jogo quanto no game over)
+        function goBackToStart() {
+            gameScreen.classList.add('hidden');
+            gameOverScreen.classList.add('hidden');
+            startScreen.classList.remove('hidden');
+        }
+
+        backBtn.onclick = goBackToStart;
+        backBtnOver.onclick = goBackToStart;
 
         // embaralhar opções
         function shuffleArray(array) {
