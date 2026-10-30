@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#07101c">
+  <meta name="description"
+        content="ARQVORA Cybersecurity: segurança de aplicações, APIs, Cloud e arquitetura segura.">
+  <title>ARQVORA Cybersecurity | Segurança desde a arquitetura</title>
+
+  <style>
+    :root {
+      --bg: #050b14;
+      --surface: #0a1422;
+      --surface2: #0d1b2c;
+      --edge: #20344b;
+      --muted: #9aafc4;
+      --ink: #eff7ff;
+      --blue: #179bff;
+      --cyan: #44d7f9;
+      --radius: 22px;
+      --wrap: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .wrap {
+      width: min(var(--wrap), calc(100% - 48px));
+      margin: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #06101be3;
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid #183047;
+    }
+
+    .nav {
+      min-height: 79px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .hero {
+      padding: 112px 0 95px;
+      background:
+        radial-gradient(circle at 75% 29%,
+          #103a5f77, transparent 37%),
+        linear-gradient(160deg,
+          #081626 0%, #040a13 75%);
+    }
+
+    .hero h1 {
+      font-size: clamp(43px, 5.7vw, 74px);
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+      font-weight: 820;
+    }
+
+    .gradient {
+      background: linear-gradient(
+        100deg, #f7fbff, #8de5ff, #188eff
+      );
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 20px;
+      border-radius: 11px;
+      background: var(--blue);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 72px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav wrap">
+      <a href="#" aria-label="ARQVORA">
+        <strong>ARQVORA</strong>
+        <small>CYBERSECURITY</small>
+      </a>
+
+      <div>
+        <a href="#servicos">Serviços</a>
+        <a href="#metodologia">Metodologia</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <h1>
+          Segurança desde
+          <span class="gradient">
+            a arquitetura.
+          </span>
+        </h1>
+
+        <p>
+          Segurança de aplicações, APIs,
+          Cloud e arquitetura segura.
+          Avaliações técnicas com evidências,
+          priorização de riscos e recomendações
+          de remediação.
+        </p>
+
+        <a class="btn" href="#contato">
+          Solicitar avaliação
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
