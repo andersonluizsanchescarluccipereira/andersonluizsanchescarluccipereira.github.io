@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0c1323">
+  <meta name="description" content="PokéAtlas: seu álbum de Pokémon, com catálogo completo, favoritos e equipes salvos no navegador.">
+  <title>PokéAtlas — Meu álbum Pokémon</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTgiIGZpbGw9IiMwZDE2MjYiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSIyMyIgZmlsbD0iI2ZmY2Q1YSIgc3Ryb2tlPSIjMWQyMjMwIiBzdHJva2Utd2lkdGg9IjQiLz48cGF0aCBkPSJNOSAzMmg0NiIgc3Ryb2tlPSIjMWQyMjMwIiBzdHJva2Utd2lkdGg9IjUiLz48cGF0aCBkPSJNMTAgMzFhMjIgMjIgMCAwIDEgNDQgMHoiIGZpbGw9IiNmMjViNTciLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMyIiByPSI5IiBmaWxsPSIjZmZmIiBzdHJva2U9IiMxZDIyMzAiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPgo=" type="image/svg+xml">
+  <style>
+:root{color-scheme:dark;--navy:#0a1120;--navy2:#101b2b;--ink:#172036;--gold:#f7c45d;--gold2:#ffdb88;--cream:#fffaf0;--muted:#a0acbe;--line:rgba(255,255,255,.12);font-family:'DM Sans',system-ui,-apple-system,sans-serif;font-synthesis:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--navy);color:#f8f4ed}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffcc69;outline-offset:4px} [hidden]{display:none!important}
+.ambient{position:absolute;pointer-events:none;z-index:0;filter:blur(60px);border-radius:50%;opacity:.5}.ambient--one{height:650px;width:650px;top:90px;right:-240px;background:radial-gradient(circle,#304866 0%,transparent 65%)}.ambient--two{height:500px;width:500px;top:960px;left:-330px;background:radial-gradient(circle,#2e324a 0%,transparent 75%)}.app-shell{position:relative;z-index:1;max-width:1536px;margin:0 auto;padding:0 5.5%}
+.site-header{height:97px;display:flex;align-items:center;gap:24px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:13px;text-decoration:none;flex-shrink:0}.brand-mark{width:43px;height:43px;background:linear-gradient(180deg,#f16659 48%,#f2e9d8 48%,#f2e9d8 100%);border:4px solid #f3f0e8;border-radius:50%;position:relative;box-shadow:0 4px 20px #e9575035}.brand-mark:before{content:'';position:absolute;left:0;right:0;top:16px;height:4px;background:#182033}.brand-mark span{position:absolute;left:12px;top:12px;width:13px;height:13px;border:4px solid #172034;border-radius:50%;background:white;z-index:1}.brand-text{font:900 22px/1 'Outfit',system-ui,sans-serif;letter-spacing:.055em;color:#fff}.brand-text>span,.footer-logo span{color:var(--gold)}.brand-text small{display:block;color:#96a1b3;letter-spacing:.19em;font:700 8px/1.9 'DM Sans',sans-serif;margin-top:2px}.main-nav{display:flex;gap:5px;margin:auto}.nav-btn{border:1px solid transparent;border-radius:12px;color:#b7c1d0;background:transparent;padding:11px 17px;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px;white-space:nowrap;transition:.2s}.nav-btn:hover{background:#ffffff0c;color:#fff}.nav-btn.is-active{background:#f7c45d1a;border-color:#f7c45d4a;color:var(--gold)}.nav-icon{font-size:20px;line-height:13px}.nav-count{background:#f3bd5540;color:#ffde95;border-radius:20px;min-width:22px;padding:2px 5px;font-size:10px;text-align:center}.header-right{display:flex;align-items:center;gap:9px;white-space:nowrap}.online-dot{width:7px;height:7px;display:block;border-radius:50%;background:#e7af58;box-shadow:0 0 0 4px #e7af5818}.online-dot.is-online{background:#71d9b8;box-shadow:0 0 0 4px #71d9b818}.online-dot.is-offline{background:#f58d90;box-shadow:0 0 0 4px #f58d9018}.network-status{font-size:11px;color:#aab5c4}.icon-btn{display:grid;place-items:center;width:37px;height:37px;color:var(--gold);border:1px solid var(--line);border-radius:12px;background:#ffffff09;font-size:22px}
+.hero{padding:67px 0 64px;min-height:560px;display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:40px}.eyebrow,.section-kicker{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:800;letter-spacing:.23em;color:#f4c46a}.eyebrow-dot{height:7px;width:7px;border-radius:50%;background:#f5c96f;box-shadow:0 0 16px #edbf56}.hero h1,.section-heading h2,.bottom-banner h2{font-family:'Outfit',system-ui,sans-serif;font-weight:800;letter-spacing:-.06em}.hero h1{font-size:clamp(51px,5.2vw,83px);line-height:1.04;margin:23px 0 20px;max-width:650px}.hero h1 em,.section-heading h2 em,.bottom-banner h2 em{font-style:normal;color:var(--gold)}.hero-copy>p{font-size:15px;line-height:1.9;color:#abb7c9;max-width:530px;margin:0 0 29px}.hero-actions{display:flex;align-items:center;gap:12px}.primary-btn,.secondary-btn,.load-btn{border-radius:13px;padding:14px 20px;font-weight:800;font-size:13px;display:inline-flex;align-items:center;justify-content:center;gap:15px;text-decoration:none;border:1px solid transparent;transition:transform .2s,filter .2s,background .2s}.primary-btn{background:linear-gradient(135deg,#ffe2a1,#f5bf53);color:#1b2433;box-shadow:0 6px 23px #e9ba5529}.primary-btn:hover{filter:brightness(1.08);transform:translateY(-2px)}.secondary-btn{background:#ffffff0a;color:#e6eaf0;border-color:var(--line)}.secondary-btn:hover{background:#ffffff1a;transform:translateY(-2px)}.hero-footnote{font-size:10px;color:#8c9aaa;margin-top:25px}.hero-footnote span{color:var(--gold);margin-right:5px}
+.hero-display{min-height:425px;position:relative;display:flex;align-items:center;justify-content:center;isolation:isolate}.hero-orbit{position:absolute;border:1px dashed #ffffff1d;border-radius:50%;transform:rotate(-19deg)}.hero-orbit--large{width:460px;height:345px}.hero-orbit--small{width:340px;height:255px;border-style:solid;border-color:#ffffff0d}.spark{position:absolute;color:var(--gold);text-shadow:0 0 20px #f6cc8f;font-size:18px}.spark--a{top:43px;left:40px}.spark--b{top:92px;right:65px;font-size:28px}.spark--c{bottom:43px;right:30px}.showcase-card{position:absolute;width:235px;height:320px;border-radius:19px;padding:13px;background:linear-gradient(155deg,#f8e1a0,#b47c32);box-shadow:0 24px 35px #02060e99,0 0 0 1px #f9d584a5 inset;display:flex;flex-direction:column;align-items:center;overflow:hidden}.showcase-card:before{content:'';position:absolute;inset:8px;border:2px solid #7d542864;border-radius:13px;pointer-events:none}.showcase-card:after{content:'';height:140px;width:150px;position:absolute;top:54px;left:42px;border-radius:50%;background:#fff7cc8f;filter:blur(20px);z-index:0}.showcase-card img{position:relative;z-index:1;width:210px;height:210px;object-fit:contain;margin:12px auto 4px;filter:drop-shadow(0 10px 6px #66431e3f)}.showcase-card strong{position:relative;z-index:1;font:900 18px 'Outfit',sans-serif;letter-spacing:.1em;color:#493420}.showcase-label{align-self:flex-start;position:relative;z-index:1;color:#684b20;font-weight:900;font-size:10px;letter-spacing:.12em;padding:3px 0 0 7px}.showcase-stars{font-size:17px;color:#966622;margin-top:3px;letter-spacing:7px}.showcase-card--back{transform:translate(74px,-38px) rotate(14deg) scale(.9);background:linear-gradient(160deg,#f8c6a2,#aa443c)}.showcase-card--front{transform:translate(-72px,24px) rotate(-11deg)}.orbit-badge{position:absolute;color:#ffdfa2;font-size:10px;font-weight:900;letter-spacing:.12em;border:1px solid #c5a46355;padding:9px 12px;border-radius:22px;background:#111d2de0}.orbit-badge--one{left:8px;top:42px}.orbit-badge--two{right:0;bottom:48px}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);padding:21px 4px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);gap:10px}.stat{display:flex;align-items:center;gap:14px;padding:9px 13px;border-right:1px solid var(--line)}.stat--last{border-right:0}.stat-symbol{display:grid;place-items:center;min-width:44px;width:44px;height:44px;border-radius:13px;background:#f5cb6917;color:#f6ca67;font-size:22px}.stat-symbol--rose{color:#f68b9e;background:#ef71851a}.stat-symbol--violet{color:#bca2ff;background:#aa89ea1b}.stat-symbol--mint{color:#83e6bc;background:#82e4b51b}.stat strong{display:block;color:#fff;font:800 23px/1.2 'Outfit',sans-serif}.stat small{display:block;color:#8e9cac;font-size:10px;margin-top:4px}
+.collection-section{padding:82px 0 65px;scroll-margin-top:25px}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:32px}.section-heading h2{font-size:clamp(35px,3.5vw,51px);margin:10px 0 7px}.section-heading p{font-size:13px;color:#a1b0c1;margin:0}.section-tag{align-self:flex-end;font-size:10px;letter-spacing:.16em;font-weight:800;color:#bfc8d3;border:1px solid var(--line);padding:11px 15px;border-radius:20px;margin-bottom:6px}.tag-star{color:var(--gold);margin-right:5px}.toolbar{display:flex;align-items:stretch;gap:12px;background:#ffffff08;border:1px solid var(--line);border-radius:18px;padding:12px}.search-field{display:flex;align-items:center;flex:1;min-width:200px;background:#101b2c;border:1px solid #ffffff1b;border-radius:12px;padding:0 16px;gap:10px}.search-field:focus-within{border-color:#f6cc6a}.search-field input{border:0;outline:none;background:none;min-width:0;width:100%;color:#f5f7fc;padding:14px 0;font-size:13px}.search-field input::placeholder{color:#75869d}.search-icon{color:var(--gold);font:30px/1 'Outfit',sans-serif;transform:translateY(-2px)}kbd{font:12px 'DM Sans',sans-serif;color:#8f9bad;border:1px solid #ffffff25;border-radius:5px;min-width:20px;text-align:center;padding:2px 5px}.select-wrap{position:relative;display:flex;align-items:center;gap:10px;padding:0 14px;background:#101b2c;border:1px solid #ffffff1b;border-radius:12px;font-size:12px;color:#a1b1c2}.select-wrap span:first-child{font-weight:700}.select-wrap select{color:#f3f4f9;appearance:none;border:0;background:none;min-width:90px;max-width:160px;padding:14px 5px;outline:none;font-weight:700;cursor:pointer}.select-wrap select option{color:#111c2a;background:#f5f7fc}.select-wrap span:last-child{color:#f4c465}
+.results-line{margin:26px 0 20px;display:flex;justify-content:space-between;align-items:center;gap:10px;color:#a9b6c6;font-size:12px}.results-line strong{color:#fff}.results-tip{font-size:9px;font-weight:800;letter-spacing:.12em;color:#77879d}.card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:19px}.poke-card{position:relative;background:linear-gradient(150deg,#fefbf3,#efecdf);border-radius:19px;min-width:0;color:var(--ink);border:5px solid #deb971;box-shadow:inset 0 0 0 1px #f5d995,0 12px 35px #02071440;overflow:hidden;transition:transform .2s,box-shadow .2s;animation:cardIn .28s both}.poke-card:hover{transform:translateY(-5px);box-shadow:0 18px 44px #02071475}.poke-card:focus-within{box-shadow:0 0 0 3px #ffe2a4,0 12px 30px #0008}.poke-card:before{position:absolute;inset:5px;border:1px solid #bb985d91;border-radius:10px;content:'';pointer-events:none}.card-top{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 8px;gap:7px}.card-id{font:800 12px 'Outfit',sans-serif;color:#8c795c;letter-spacing:.03em}.card-chip{font-size:9px;font-weight:800;color:#7f684a;background:#ebdbb9;border:1px solid #d8c39d;padding:5px 7px;border-radius:6px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.card-visual{display:flex;justify-content:center;align-items:center;position:relative;height:185px;margin:0 13px;border-radius:11px;background:radial-gradient(circle at 50% 52%,#f6d9a9 0%,#eee1c2 43%,#eee9da 72%);border:2px solid #d4c7ac;overflow:hidden}.card-visual:before,.card-visual:after{content:'';position:absolute;width:180px;height:180px;border:1px solid #c8b99a70;border-radius:50%}.card-visual:after{width:125px;height:125px}.card-visual img{position:relative;z-index:1;width:175px;height:175px;object-fit:contain;filter:drop-shadow(0 9px 7px #574a3a34);transition:transform .25s}.poke-card:hover .card-visual img{transform:scale(1.06)}.card-bottom{padding:13px 16px 16px}.card-name{font:800 clamp(14px,1.4vw,18px)/1.25 'Outfit',sans-serif;letter-spacing:-.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}.card-category{display:flex;align-items:center;justify-content:space-between;margin-top:7px;gap:4px;color:#99856b;font-size:10px;font-weight:700}.card-divider{height:1px;background:#d2c4a9;margin:13px 0 12px}.card-controls{display:flex;align-items:center;gap:7px}.card-open{flex:1;border:1px solid #b8a17a;color:#6a5131;background:#f9f4e7;border-radius:8px;font-size:11px;font-weight:800;padding:9px 5px}.card-open:hover{background:#ead5a6}.card-favorite{display:grid;place-items:center;width:34px;height:34px;border:1px solid #c9b896;border-radius:8px;color:#967c5c;background:#f8f0df;font-size:18px}.card-favorite.is-favorite{background:#fbd5d7;border-color:#d88b93;color:#d65c73}.card-variant{font-size:9px;color:#95846c;display:block;margin-top:6px}.skeleton-card{height:315px;border-radius:19px;background:linear-gradient(100deg,#ffffff0b 0%,#ffffff18 50%,#ffffff0b 100%);background-size:200% auto;animation:shimmer 1.5s linear infinite;border:1px solid #ffffff10}.empty-state{text-align:center;padding:58px 25px;border:1px dashed #ffffff30;border-radius:20px}.empty-icon{font-size:53px;color:var(--gold)}.empty-state h3{font:800 24px 'Outfit',sans-serif;margin:7px 0}.empty-state p{color:var(--muted);margin-bottom:25px}.load-more-wrap{text-align:center;margin:34px 0 5px}.load-btn{border-color:#cfaa6145;background:#e5b65c14;color:#f9d488}.load-btn:hover{background:#f8c96f27}
+.bottom-banner{margin:0 0 72px;display:flex;gap:30px;align-items:center;justify-content:space-between;padding:39px 45px;background:radial-gradient(circle at 88% 50%,#604d3542,transparent 42%),linear-gradient(120deg,#1c293a,#182436);border:1px solid #eac2703d;border-radius:22px}.bottom-banner h2{font-size:33px;margin:9px 0}.bottom-banner p{color:#a8b7c9;font-size:12px;max-width:530px;line-height:1.8;margin:0}.banner-buttons{display:flex;gap:9px;flex-shrink:0}.footer{display:flex;justify-content:space-between;gap:15px;align-items:center;border-top:1px solid var(--line);padding:26px 0 34px;color:#8595aa;font-size:10px}.footer a{text-decoration:none;color:#c5b084}.footer-logo{font:900 16px 'Outfit',sans-serif;color:#fff;letter-spacing:.07em}
+/* Teams */.teams-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:4px 0 23px}.teams-heading p{color:var(--muted);font-size:13px}.team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.team-panel{background:#152336;border:1px solid #ffffff1d;border-radius:18px;padding:22px}.team-panel-head{display:flex;align-items:center;gap:15px;justify-content:space-between}.team-panel h3{font:800 20px 'Outfit',sans-serif;margin:0}.team-panel .team-meta{font-size:11px;color:var(--muted);margin:5px 0 0}.team-delete{background:transparent;border:1px solid #ffffff24;border-radius:9px;color:#e9a2a6;padding:8px;font-size:12px;font-weight:700}.team-members{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}.team-member{min-height:120px;border:1px solid #ffffff19;border-radius:12px;background:#ffffff09;text-align:center;padding:9px 4px;position:relative}.team-member img{width:70px;height:70px;object-fit:contain}.team-member span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;font-weight:700}.remove-member{position:absolute;top:4px;right:5px;font-size:17px;line-height:1;border:0;background:transparent;color:#f4a2a7}.team-member--empty{display:grid;place-items:center;color:#6f8198;border-style:dashed;font-size:28px}.team-member--empty small{display:block;font-size:9px;margin-top:-18px}.team-empty{padding:55px 20px;border:1px dashed #ffffff30;border-radius:20px;text-align:center}.team-empty .empty-icon{font-size:40px}.team-empty h3{font:800 25px 'Outfit',sans-serif;margin:12px 0}.team-empty p{font-size:13px;color:#aab8c9;margin-bottom:24px}
+/* Dialogs */dialog{border:0;color:#eaf1f9;padding:0;background:#111c2b;box-shadow:0 24px 90px #000d;max-width:min(92vw,760px)}dialog::backdrop{background:#020913c9;backdrop-filter:blur(7px)}.detail-dialog{border-radius:22px;width:760px;max-height:90vh;overflow:auto;border:1px solid #ffffff2e}.small-dialog{border-radius:20px;padding:30px;width:430px;border:1px solid #ffffff28}.small-dialog h2{font:800 28px 'Outfit',sans-serif;margin:13px 0 8px}.small-dialog p{font-size:13px;color:#aebbd0;line-height:1.6}.dialog-close{position:absolute;right:17px;top:14px;z-index:3;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;border:1px solid #ffffff26;background:#ffffff13;color:#fff;font-size:24px}.detail-hero{display:grid;grid-template-columns:48% 52%;min-height:370px;background:radial-gradient(circle at 24% 44%,#ecd09c 0%,#b38c55 30%,#312a2c 58%,#152137 85%);padding:40px 36px 24px}.detail-art{display:flex;align-items:center;justify-content:center}.detail-art img{max-height:275px;width:100%;object-fit:contain;filter:drop-shadow(0 15px 15px #0006)}.detail-intro{padding:33px 16px 20px}.detail-id{color:#ffdfa0;font-weight:900;letter-spacing:.2em;font-size:12px}.detail-intro h2{font:900 40px/1.1 'Outfit',sans-serif;margin:16px 0 13px;text-transform:capitalize;overflow-wrap:anywhere}.type-badges{display:flex;flex-wrap:wrap;gap:6px}.type-badge{display:inline-block;padding:7px 11px;border:1px solid #ffffff48;border-radius:8px;background:#ffffff20;font-size:10px;letter-spacing:.08em;font-weight:800;text-transform:uppercase}.detail-intro p{font-size:12px;line-height:1.8;color:#d0d8df;margin:20px 0}.detail-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:17px}.detail-actions button{padding:10px 12px;font-size:11px}.detail-body{padding:25px 35px 34px}.detail-row{display:flex;gap:17px;justify-content:space-between;margin:0 0 22px}.detail-fact{flex:1;background:#ffffff0a;border:1px solid #ffffff13;border-radius:12px;padding:13px}.detail-fact strong{display:block;font:800 22px 'Outfit',sans-serif}.detail-fact small{color:#95a7bf;font-size:10px}.detail-section-title{font:800 16px 'Outfit',sans-serif;margin:24px 0 12px}.stat-bar-row{display:grid;grid-template-columns:100px 34px 1fr;gap:11px;align-items:center;margin:10px 0;font-size:12px}.stat-bar-row span:first-child{color:#b9c4d3}.stat-bar-row strong{font-weight:800;font-size:12px;text-align:right}.bar{height:7px;border-radius:9px;background:#ffffff16;overflow:hidden}.bar>span{height:100%;display:block;background:linear-gradient(90deg,#eab45b,#ffdb88);border-radius:9px}.ability-tags{display:flex;flex-wrap:wrap;gap:7px}.ability-tags span{font-size:11px;background:#ffffff12;border:1px solid #ffffff20;padding:9px 11px;border-radius:8px}.note-label,.form-label{display:block;margin:17px 0 8px;color:#c6d0de;font-size:12px;font-weight:800}.note-field,.form-input{background:#ffffff0a;border:1px solid #ffffff25;color:#fff;border-radius:10px;padding:12px;width:100%;font-size:13px}.note-field{resize:vertical;min-height:70px}.note-field::placeholder,.form-input::placeholder{color:#7d8ca1}.detail-save-note{margin-top:9px}.form-error{color:#ffa6a6!important;min-height:16px}.full-btn{width:100%;margin-top:12px}.pick-team-options{display:grid;gap:9px;margin-top:20px}.pick-team-option{display:flex;justify-content:space-between;width:100%;text-align:left;padding:14px;border-radius:10px;border:1px solid #ffffff20;background:#ffffff10;color:#eaf1f9;font-weight:700}.pick-team-option small{color:#b0becf}.pick-team-option:hover:not(:disabled){border-color:#f8c66f}.detail-error{padding:65px 25px;text-align:center}.detail-error h2{font:800 24px 'Outfit',sans-serif}.detail-error p{color:#b2bfd1}.dialog-loading{padding:85px 20px;text-align:center;color:#c8d2e0}.toast-region{position:fixed;z-index:90;bottom:20px;right:20px;max-width:min(90vw,390px);pointer-events:none}.toast{border:1px solid #ebc27566;background:#263243;color:#fff;box-shadow:0 10px 30px #0007;padding:14px 18px;border-radius:13px;font-size:13px;font-weight:700;margin-top:8px;animation:cardIn .2s both}.toast.is-error{border-color:#f49aa36f}.help-text{color:#a2b0c2;font-size:12px;line-height:1.7}
+@keyframes shimmer{to{background-position:-200% 0}}@keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1170px){.app-shell{padding:0 4%}.hero{gap:10px}.hero h1{font-size:63px}.hero-display{transform:scale(.88)}.network-status{display:none}.card-grid{gap:12px}.card-visual{height:150px}.card-visual img{width:140px;height:140px}.bottom-banner{padding:30px;gap:15px}.banner-buttons{flex-direction:column}}
+@media(max-width:880px){.site-header{flex-wrap:wrap;height:auto;min-height:91px;padding:20px 0;gap:14px}.main-nav{order:3;width:100%;justify-content:center}.brand{margin-right:auto}.hero{grid-template-columns:1fr;min-height:0;padding:52px 0 28px}.hero-copy{text-align:center}.hero h1{margin-left:auto;margin-right:auto}.hero-copy>p{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-display{height:380px;min-height:350px;transform:scale(.91)}.stats-row{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border:0}.card-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.toolbar{flex-wrap:wrap}.search-field{width:100%;flex-basis:100%}.select-wrap{flex:1}.bottom-banner{flex-direction:column;align-items:flex-start}.banner-buttons{flex-direction:row}.footer{flex-wrap:wrap}.team-grid{grid-template-columns:1fr}}
+@media(max-width:580px){.app-shell{padding:0 17px}.site-header{padding:14px 0}.brand-text{font-size:19px}.brand-mark{width:37px;height:37px}.brand-mark:before{top:13px}.brand-mark span{top:9px;left:9px}.header-right .icon-btn{display:none}.main-nav{justify-content:space-between}.nav-btn{flex:1;justify-content:center;padding:10px 8px;font-size:12px}.hero{padding-top:44px}.hero h1{font-size:48px}.hero-copy>p{font-size:13px}.hero-display{height:310px;min-height:310px;transform:scale(.68);margin:-34px 0 -36px}.hero-actions{flex-wrap:wrap}.hero-actions button{flex:1}.stats-row{padding:15px 0;gap:4px}.stat{padding:7px 3px;gap:8px}.stat-symbol{width:36px;height:36px;min-width:36px}.stat strong{font-size:17px}.stat small{font-size:9px}.collection-section{padding-top:50px}.section-heading h2{font-size:36px}.section-tag{display:none}.toolbar{padding:10px;gap:8px}.select-wrap{min-width:0;flex:1;justify-content:space-between;padding:0 9px}.select-wrap span:first-child{display:none}.select-wrap select{width:100%;min-width:0;max-width:none;font-size:11px}.results-tip{display:none}.card-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.poke-card{border-width:4px;border-radius:15px}.card-top{padding:11px 10px 6px}.card-visual{height:135px;margin:0 9px}.card-visual img{width:127px;height:127px}.card-bottom{padding:9px 10px 11px}.card-name{font-size:14px}.card-divider{margin:10px 0}.card-id{font-size:10px}.card-chip{font-size:8px;padding:4px}.card-controls{gap:4px}.card-open{font-size:10px;padding:9px 3px}.card-favorite{width:32px;height:32px}.bottom-banner{padding:24px 20px;margin-bottom:35px}.bottom-banner h2{font-size:27px}.banner-buttons{width:100%;flex-direction:column}.footer{display:grid;justify-content:start}.detail-hero{grid-template-columns:1fr;padding:31px 22px 19px}.detail-art img{max-height:160px}.detail-intro{padding:12px 4px 0}.detail-intro h2{font-size:31px;margin:9px 0}.detail-intro p{margin:12px 0}.detail-body{padding:18px 20px 24px}.detail-row{gap:6px}.detail-fact{padding:9px}.detail-fact strong{font-size:18px}.stat-bar-row{grid-template-columns:75px 29px 1fr;font-size:11px;gap:6px}.team-members{grid-template-columns:repeat(3,1fr)}.team-panel{padding:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* ===== ARENA: duelo de cartas, melhor de três ===== */
+.nav-btn--battle { color: #f8d997; }
+.nav-new { display:inline-flex;align-items:center;font-size:9px;letter-spacing:.06em;background:#9a6b35;color:#fff5d9;border-radius:20px;padding:3px 5px;margin-left:3px;vertical-align:middle; }
+.battle-area { --gold:#e6c475; --pink:#fd819a; --blue:#7dcaef; color:#f6f4ef; }
+.battle-area[hidden] { display:none !important; }
+.battle-scoreboard { background:linear-gradient(110deg,rgba(34,48,76,.98),rgba(23,30,52,.99)); border:1px solid rgba(230,196,117,.34); border-radius:20px;display:grid;grid-template-columns:1fr 1.35fr 1fr;align-items:center;padding:22px 28px;box-shadow:0 16px 44px rgba(0,0,0,.19); }
+.battle-scoreboard>div {display:flex; flex-direction:column;align-items:center;gap:4px}
+.battle-scoreboard small {color:#b8c3da;font-weight:800;letter-spacing:.14em;font-size:11px}
+.battle-scoreboard>div>strong {font-size:48px;line-height:1.1;color:var(--gold)}
+.battle-scoreboard .battle-score-center {gap:7px}
+.battle-score-center strong {font-size:19px!important;color:#f7f4e9!important}
+.battle-score-center span {font-size:10px;text-align:center;color:#c5cee0}
+.battle-score-center .battle-eyebrow {color:var(--gold);letter-spacing:.20em;font-size:11px;font-weight:900}
+.battle-intro {margin:17px auto 24px;max-width:760px;color:#b7c2d7;text-align:center;line-height:1.65;font-size:14px}
+.battle-board {position:relative;display:grid;grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr);gap:10px;align-items:center}
+.battle-side {min-width:0;border:1px solid rgba(231,197,125,.24);border-radius:22px;background:linear-gradient(148deg,rgba(26,38,63,.94),rgba(13,23,44,.98));padding:20px;transition:filter .35s,border-color .35s,box-shadow .35s;overflow:hidden}
+.battle-side--cpu {background:linear-gradient(148deg,rgba(44,31,54,.96),rgba(18,21,39,.98))}
+.battle-side-heading {display:flex;justify-content:space-between;align-items:center;gap:7px;font-size:11px;font-weight:900;letter-spacing:.12em;color:#d9d5e7}
+.battle-side-heading span:last-child {font-size:22px;color:var(--gold)}
+.battle-showcase {height:266px;display:flex;justify-content:center;align-items:center;margin:14px auto;background:radial-gradient(circle,rgba(231,196,111,.16),transparent 70%);border-radius:16px;perspective:900px}
+.battle-card-art {width:min(100%,205px);min-height:240px;display:flex;align-items:center;justify-content:space-between;flex-direction:column;border:5px solid #d6ac61;border-radius:13px;background:linear-gradient(170deg,#e5dbb5,#a7c9c7 52%,#eddc9a);box-shadow:0 14px 25px #030b1980,inset 0 0 0 2px #fff8;transform-origin:center;animation:battle-appear .47s cubic-bezier(.2,1.3,.3,1)}
+.battle-card-id {margin:12px 10px 0;align-self:flex-start;border-radius:20px;background:#131d34;padding:4px 10px;color:#f5e4ab;font-size:11px;font-weight:900}
+.battle-card-art img {width:min(100%,175px);height:155px;object-fit:contain;filter:drop-shadow(0 9px 12px #273c4b66)}
+.battle-card-art strong {font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:#1f2a38;text-align:center;margin:4px 0 13px;overflow-wrap:anywhere}
+.battle-card-placeholder {height:236px;width:min(100%,202px);border-radius:14px;border:3px dashed #c8ac724e;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-weight:900;color:#dacb95;font-size:88px;background:linear-gradient(145deg,#15253f,#283854);text-align:center}
+.battle-card-placeholder--hidden {background:repeating-linear-gradient(40deg,#392c52 0px,#392c52 10px,#242b4d 11px,#242b4d 22px);font-size:100px}
+.battle-card-placeholder span {font-size:10px;letter-spacing:.13em;max-width:150px;line-height:1.6}
+.battle-search-label {display:block;font-size:12px;color:#d3d7e2;margin-bottom:8px}
+.battle-input {width:100%;border-radius:12px;background:#101a2f;color:white;border:1px solid #58627e;padding:13px 14px;font-size:14px;outline:none;box-sizing:border-box}
+.battle-input:focus {border-color:var(--gold);box-shadow:0 0 0 3px #ebc78322}
+.battle-choices {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;max-height:230px;overflow:auto;margin-top:8px}
+.battle-option {display:flex;align-items:center;gap:6px;min-width:0;text-align:left;background:#273753;border:1px solid #465471;color:#fff;border-radius:8px;padding:5px;cursor:pointer;font-size:12px}
+.battle-option:hover,.battle-option:focus-visible {background:#38537b;border-color:var(--gold)}
+.battle-option img {width:36px;height:36px;object-fit:contain}
+.battle-option span {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1}
+.battle-option small {color:#b8c4d8;font-size:10px}
+.battle-no-matches {font-size:11px;grid-column:1/-1;color:#d5c4bd}
+.battle-area .secondary-btn {color:#efeae0}
+.battle-random {width:100%;justify-content:center;margin-top:11px;min-height:42px}
+.battle-versus {position:relative;display:flex;align-items:center;justify-content:center;z-index:1}
+.battle-versus span {font-size:32px;font-weight:1000;font-style:italic;color:var(--gold);text-shadow:0 3px 20px #ffac4480}
+.battle-energy {position:absolute;width:62px;height:62px;border-radius:50%;border:2px solid #e8bc7252;animation:battle-pulse 2s ease-in-out infinite;pointer-events:none}
+.battle-action-panel {margin:24px auto 0;max-width:780px;background:#1c2b45;border:1px solid #344969;border-radius:20px;padding:24px;text-align:center;box-shadow:0 14px 38px #0003}
+.battle-attribute-bar {display:flex;gap:12px;justify-content:center;align-items:center;margin-bottom:18px}
+.battle-attribute-bar label {font-size:13px;color:#dce2ef;font-weight:700}
+.battle-attribute-bar select {min-height:43px;border-radius:9px;background:#101b31;color:#f7e6bd;border:1px solid #786746;padding:0 10px;max-width:230px}
+.battle-fight {min-width:240px;min-height:52px;font-weight:900!important;letter-spacing:.07em;justify-content:center}
+.battle-area button:disabled {opacity:.52;cursor:not-allowed}
+.battle-action-panel>.secondary-btn {margin-left:10px}
+.battle-hint {font-size:12px;color:#c9d1df;margin-top:15px;line-height:1.6}
+.battle-result {margin-top:18px;border:1px solid #bda67988;border-radius:15px;padding:19px;background:#111b2e;animation:battle-appear .3s ease-out}
+.battle-result[hidden]{display:none}
+.battle-result--player {border-color:#79d8b1;background:linear-gradient(120deg,#153734,#13273d)}
+.battle-result--cpu {border-color:#f889a1;background:linear-gradient(120deg,#422436,#16263d)}
+.battle-result .battle-result-kicker {font-size:10px;letter-spacing:.18em;font-weight:800;color:#edd39d}
+.battle-result h3 {margin:7px 0 5px;font-size:29px;color:#f9e5b5}
+.battle-result p {font-size:14px;color:#e6edf7}
+.battle-result p strong {font-size:22px;color:#fff}
+.battle-result p span {opacity:.5}
+.battle-result small {color:#bec7d7}
+.battle-champion {margin-top:14px;color:#ffdf8f;font-weight:900;font-size:17px}
+.battle-side--charging .battle-showcase {animation:battle-pulse .35s infinite alternate}
+.battle-side--winner {border-color:#70e8bb;box-shadow:0 0 28px #6dddaa44}
+.battle-side--loser {filter:saturate(.65) brightness(.78)}
+.battle-side--winner .battle-card-art {animation:battle-win .8s ease-in-out 2 alternate}
+.battle-side--draw {border-color:#d2ab71}
+.battle-history-wrap {margin:26px 0 38px;background:#151f34;border-radius:18px;padding:21px 25px;border:1px solid #34415c}
+.battle-history-wrap h3 {font-size:17px;margin:0 0 12px;color:#f1e3ba}
+.battle-history {margin:0;padding-left:20px;display:grid;gap:9px;font-size:12px;color:#cbd3e3}
+.battle-history li {line-height:1.65;padding:8px 0;border-bottom:1px solid #ffffff12}
+.battle-history li span {display:block}
+.battle-history li strong {display:block;color:#f2d79d}
+@keyframes battle-pulse {from{transform:scale(.94);opacity:.6}to{transform:scale(1.08);opacity:1}}
+@keyframes battle-appear {from{opacity:.1;transform:scale(.72) rotateY(120deg)}to{opacity:1;transform:scale(1) rotateY(0)}}
+@keyframes battle-win {from{transform:translateY(0) rotate(-2deg);filter:brightness(1)}to{transform:translateY(-12px) rotate(2deg);filter:brightness(1.2)}}
+@media(max-width:900px){.battle-board {grid-template-columns:minmax(0,1fr) 52px minmax(0,1fr)}.battle-side {padding:12px}.battle-versus span{font-size:24px}.battle-choices {grid-template-columns:1fr}}
+@media(max-width:640px){.battle-board{grid-template-columns:1fr}.battle-side{padding:16px}.battle-versus{height:55px}.battle-versus span{font-size:28px}.battle-showcase{height:230px}.battle-card-art{min-height:220px}.battle-card-art img{height:130px}.battle-scoreboard{padding:14px;gap:3px}.battle-scoreboard>div>strong{font-size:34px}.battle-score-center strong{font-size:14px!important}.battle-attribute-bar{flex-wrap:wrap}.battle-action-panel{padding:17px}.battle-fight{min-width:0;width:100%}.battle-action-panel>.secondary-btn{margin:10px 0 0;width:100%}.battle-choices{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.battle-area *, .battle-area *::before, .battle-area *::after{animation:none!important;transition:none!important}}
+
+</style>
+</head>
+<body>
+  <div class="ambient ambient--one" aria-hidden="true"></div>
+  <div class="ambient ambient--two" aria-hidden="true"></div>
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="PokéAtlas, página inicial">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span class="brand-text">POKÉ<span>ATLAS</span><small>SEU LIVRO DE CARTAS</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <button type="button" class="nav-btn is-active" data-view="catalog" aria-current="page"><span class="nav-icon">◫</span> Álbum</button>
+        <button type="button" class="nav-btn" data-view="favorites"><span class="nav-icon">♡</span> Favoritos <span class="nav-count" id="navFavoriteCount">0</span></button>
+        <button type="button" class="nav-btn" data-view="teams"><span class="nav-icon">♜</span> Equipes</button>
+        <button type="button" class="nav-btn nav-btn--battle" data-view="battle"><span class="nav-icon">⚔</span> Arena <span class="nav-new">NOVO</span></button>
+      </nav>
+      <div class="header-right">
+        <span class="online-dot" id="networkDot" aria-hidden="true"></span>
+        <span id="networkStatus" class="network-status" role="status">Conectando à PokéAPI</span>
+        <button class="icon-btn backup-trigger" type="button" title="Exportar coleção" aria-label="Exportar minha coleção" data-action="export">⇩</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> UMA JORNADA POR TODAS AS GERAÇÕES • AGORA COM BATALHAS</span>
+          <h1 id="heroTitle">Sua coleção.<br><em>Sua aventura.</em></h1>
+          <p>Explore Pokémon, monte sua coleção e batalhe melhor de três com cartas de atributos. Funciona direto no HTML, com dados online e cartas de demonstração offline.</p>
+          <div class="hero-actions">
+            <button type="button" class="primary-btn" data-action="explore">Explorar o álbum <span aria-hidden="true">↗</span></button>
+            <button type="button" class="secondary-btn" data-view="battle">Entrar na arena <span aria-hidden="true">⚔</span></button>
+          </div>
+          <div class="hero-footnote"><span aria-hidden="true">✦</span> Gratuito • Sem cadastro • Salvo neste navegador</div>
+        </div>
+        <div class="hero-display" aria-hidden="true">
+          <div class="hero-orbit hero-orbit--large"></div>
+          <div class="hero-orbit hero-orbit--small"></div>
+          <div class="spark spark--a">✦</div>
+          <div class="spark spark--b">✦</div>
+          <div class="spark spark--c">✦</div>
+          <div class="showcase-card showcase-card--back">
+            <span class="showcase-label">#006 • FOGO / VOADOR</span>
+            <img data-pokemon-image data-fallback="0" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png" alt="" loading="lazy">
+            <strong>CHARIZARD</strong>
+          </div>
+          <div class="showcase-card showcase-card--front">
+            <span class="showcase-label">#025 • ELÉTRICO</span>
+            <img data-pokemon-image data-fallback="0" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" alt="" loading="eager">
+            <strong>PIKACHU</strong><span class="showcase-stars">✦ ✦ ✦</span>
+          </div>
+          <div class="orbit-badge orbit-badge--one">EST. 1996</div>
+          <div class="orbit-badge orbit-badge--two">✧ 9 GERAÇÕES</div>
+        </div>
+      </section>
+
+      <section class="stats-row" aria-label="Estatísticas do álbum">
+        <div class="stat"><span class="stat-symbol">◈</span><div><strong id="totalCount">—</strong><small>Pokémon no glossário</small></div></div>
+        <div class="stat"><span class="stat-symbol stat-symbol--rose">♡</span><div><strong id="favoriteCount">0</strong><small>Meus favoritos</small></div></div>
+        <div class="stat"><span class="stat-symbol stat-symbol--violet">♜</span><div><strong id="teamCount">0</strong><small>Equipes criadas</small></div></div>
+        <div class="stat stat--last"><span class="stat-symbol stat-symbol--mint">✓</span><div><strong>100% local</strong><small>Seus dados, seu navegador</small></div></div>
+      </section>
+
+      <section class="collection-section" id="collection" aria-labelledby="sectionTitle">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker" id="sectionKicker">A SUA ENCICLOPÉDIA</span>
+            <h2 id="sectionTitle">O grande <em>Pokédex.</em></h2>
+            <p id="sectionDescription">Uma carta para cada descoberta. Encontre seu próximo favorito.</p>
+          </div>
+          <div class="section-tag"><span class="tag-star">✦</span> EDIÇÃO DIGITAL</div>
+        </div>
+
+        <div id="catalogControls" class="toolbar" role="search">
+          <label class="search-field" for="searchInput"><span aria-hidden="true" class="search-icon">⌕</span><input id="searchInput" type="search" autocomplete="off" spellcheck="false" placeholder="Pesquisar Pokémon por nome ou número..." aria-label="Pesquisar Pokémon"><kbd>/</kbd></label>
+          <label class="select-wrap"><span>Geração</span><select id="generationSelect" aria-label="Filtrar por geração">
+            <option value="all">Todas</option><option value="1">Kanto • I</option><option value="2">Johto • II</option><option value="3">Hoenn • III</option><option value="4">Sinnoh • IV</option><option value="5">Unova • V</option><option value="6">Kalos • VI</option><option value="7">Alola • VII</option><option value="8">Galar • VIII</option><option value="9">Paldea • IX</option><option value="forms">Formas especiais</option>
+          </select><span aria-hidden="true">⌄</span></label>
+          <label class="select-wrap"><span>Ordenar</span><select id="sortSelect" aria-label="Ordenar Pokémon"><option value="number">Número ↑</option><option value="name">Nome A–Z</option><option value="numberDesc">Número ↓</option></select><span aria-hidden="true">⌄</span></label>
+        </div>
+
+        <div id="catalogArea">
+          <div class="results-line"><span id="resultsLabel" aria-live="polite">Carregando seu álbum...</span><span class="results-tip">CLIQUE EM UMA CARTA PARA DESCOBRIR MAIS ✧</span></div>
+          <div id="catalogGrid" class="card-grid" aria-live="polite"></div>
+          <div id="loadingGrid" class="card-grid loading-grid" aria-hidden="true">
+            <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
+            <div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div><div class="skeleton-card"></div>
+          </div>
+          <div id="emptyState" class="empty-state" hidden><span class="empty-icon">◇</span><h3>Nenhum Pokémon por aqui</h3><p id="emptyMessage">Experimente outro nome ou outra geração.</p><button class="secondary-btn" type="button" data-action="reset-filters">Limpar filtros</button></div>
+          <div id="loadMoreWrap" class="load-more-wrap" hidden><button type="button" id="loadMoreButton" class="load-btn">Mostrar mais cartas <span aria-hidden="true">↓</span></button></div>
+        </div>
+        <div id="teamsArea" hidden></div>
+        <div id="battleArea" class="battle-area" hidden>
+          <div class="battle-scoreboard" aria-live="polite">
+            <div><small>VOCÊ</small><strong id="battleYourScore">0</strong></div>
+            <div class="battle-score-center"><span class="battle-eyebrow">MELHOR DE 3</span><strong id="battleRoundText">Rodada 1</strong><span id="battleModeBadge">Atributos da PokéAPI</span></div>
+            <div><small>COMPUTADOR</small><strong id="battleCpuScore">0</strong></div>
+          </div>
+          <p class="battle-intro">Escolha uma carta ou sorteie. O computador também pode ser sorteado ou escolhido por você. Cada rodada compara um atributo; quem vencer duas rodadas leva o duelo.</p>
+          <div class="battle-board">
+            <div class="battle-side" id="battlePlayerSide">
+              <div class="battle-side-heading"><span>01 · SUA CARTA</span><span class="battle-player-symbol">★</span></div>
+              <div class="battle-showcase" id="battlePlayerCard"><div class="battle-card-placeholder">✦<span>ESCOLHA SEU POKÉMON</span></div></div>
+              <label class="battle-search-label" for="battlePlayerSearch">Escolha por nome ou número</label>
+              <input id="battlePlayerSearch" class="battle-input" type="search" placeholder="Ex.: pikachu ou 25" autocomplete="off" aria-label="Buscar minha carta">
+              <div id="battlePlayerChoices" class="battle-choices"></div>
+              <button class="secondary-btn battle-random" type="button" data-action="battle-random" data-side="player">🎲 Sortear minha carta</button>
+            </div>
+            <div class="battle-versus" aria-hidden="true"><span>VS</span><div class="battle-energy"></div></div>
+            <div class="battle-side battle-side--cpu" id="battleCpuSide">
+              <div class="battle-side-heading"><span>02 · CARTA DO COMPUTADOR</span><span>⚡</span></div>
+              <div class="battle-showcase" id="battleCpuCard"><div class="battle-card-placeholder battle-card-placeholder--hidden">?<span>ADVERSÁRIO MISTERIOSO</span></div></div>
+              <label class="battle-search-label" for="battleCpuSearch">Escolha o adversário (opcional)</label>
+              <input id="battleCpuSearch" class="battle-input" type="search" placeholder="Ex.: charizard ou 6" autocomplete="off" aria-label="Buscar carta do computador">
+              <div id="battleCpuChoices" class="battle-choices"></div>
+              <button class="secondary-btn battle-random" type="button" data-action="battle-random" data-side="cpu">🎲 Sortear adversário</button>
+            </div>
+          </div>
+          <div class="battle-action-panel">
+            <div class="battle-attribute-bar"><label for="battleAttribute">Atributo decisivo</label><select id="battleAttribute" aria-label="Atributo da batalha">
+              <option value="random">🎲 Atributo aleatório</option><option value="hp">❤️ HP</option><option value="attack">⚔️ Ataque</option><option value="defense">🛡️ Defesa</option><option value="special-attack">✨ Ataque especial</option><option value="special-defense">🔮 Defesa especial</option><option value="speed">⚡ Velocidade</option>
+            </select></div>
+            <button type="button" id="battleFightButton" class="primary-btn battle-fight" data-action="battle-fight">⚔ INICIAR BATALHA</button>
+            <button type="button" class="secondary-btn" data-action="battle-reset">↻ Novo duelo</button>
+            <p id="battleHint" class="battle-hint" role="status">Escolha sua carta. O computador receberá uma carta aleatória se você não escolher.</p>
+            <div id="battleResult" class="battle-result" hidden aria-live="assertive"></div>
+          </div>
+          <div class="battle-history-wrap"><h3>Crônicas da arena</h3><ol id="battleHistory" class="battle-history"><li>Nenhuma rodada disputada ainda.</li></ol></div>
+        </div>
+      </section>
+
+      <section class="bottom-banner">
+        <div><span class="eyebrow">GUARDE SUA JORNADA</span><h2>Seu álbum fica <em>com você.</em></h2><p>Favoritos e equipes são armazenados neste navegador. Exporte um backup para levar sua coleção a outro dispositivo.</p></div>
+        <div class="banner-buttons"><button type="button" class="primary-btn" data-action="export">Exportar coleção <span aria-hidden="true">⇩</span></button><button type="button" class="secondary-btn" data-action="import">Importar backup <span aria-hidden="true">↥</span></button></div>
+        <input id="importInput" type="file" accept="application/json,.json" hidden>
+      </section>
+    </main>
+    <footer class="footer"><span class="footer-logo">POKÉ<span>ATLAS</span></span><span>Projeto de fã • Dados: <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer">PokéAPI</a> • Imagens: <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noopener noreferrer">PokéAPI Sprites</a></span><span>Feito com HTML, CSS e JavaScript ♡</span></footer>
+  </div>
+
+  <dialog id="detailDialog" class="detail-dialog" aria-label="Detalhes do Pokémon"><div id="detailContent"></div></dialog>
+  <dialog id="teamDialog" class="small-dialog" aria-labelledby="teamDialogTitle"><form id="teamForm"><button type="button" class="dialog-close" data-action="close-team-dialog" aria-label="Fechar">×</button><span class="section-kicker">MINHA JORNADA</span><h2 id="teamDialogTitle">Criar equipe</h2><p>Escolha um nome para seu time de até 6 Pokémon.</p><label class="form-label" for="teamName">Nome da equipe</label><input class="form-input" id="teamName" name="teamName" required maxlength="48" placeholder="Ex.: Os lendários de Kanto"><p id="teamFormError" class="form-error" aria-live="polite"></p><button class="primary-btn full-btn" type="submit">Criar equipe ↗</button></form></dialog>
+  <dialog id="pickTeamDialog" class="small-dialog" aria-labelledby="pickTeamTitle"><button type="button" class="dialog-close" data-action="close-pick-dialog" aria-label="Fechar">×</button><span class="section-kicker">MONTE SEU TIME</span><h2 id="pickTeamTitle">Adicionar à equipe</h2><p id="pickTeamDescription">Selecione o time que receberá este Pokémon.</p><div id="pickTeamOptions" class="pick-team-options"></div></dialog>
+  <div id="toastRegion" class="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
+<script>
+/* utils.js */
+const IMAGE_BASE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
+const PLACEHOLDER_IMAGE = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTYgMjU2Ij48cmVjdCB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgcng9IjM2IiBmaWxsPSIjZjNlZWU1Ii8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMTI4IiByPSI3NSIgZmlsbD0iI2U4ZGVkMCIgc3Ryb2tlPSIjYzliY2E2IiBzdHJva2Utd2lkdGg9IjkiLz48cGF0aCBkPSJNNTUgMTI4aDE0NiIgc3Ryb2tlPSIjYzliY2E2IiBzdHJva2Utd2lkdGg9IjExIi8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMTI4IiByPSIyNCIgZmlsbD0iI2ZhZjdmMSIgc3Ryb2tlPSIjYzliY2E2IiBzdHJva2Utd2lkdGg9IjkiLz48cGF0aCBkPSJNNTMgMTI1YTc1IDc1IDAgMCAxIDE1MCAweiIgZmlsbD0iI2U4YTc4ZiIvPjwvc3ZnPgo=';
+const GENERATIONS = Object.freeze([
+  { id: 1, name: 'Kanto', start: 1, end: 151 },
+  { id: 2, name: 'Johto', start: 152, end: 251 },
+  { id: 3, name: 'Hoenn', start: 252, end: 386 },
+  { id: 4, name: 'Sinnoh', start: 387, end: 493 },
+  { id: 5, name: 'Unova', start: 494, end: 649 },
+  { id: 6, name: 'Kalos', start: 650, end: 721 },
+  { id: 7, name: 'Alola', start: 722, end: 809 },
+  { id: 8, name: 'Galar', start: 810, end: 905 },
+  { id: 9, name: 'Paldea', start: 906, end: 1025 }
+]);
+
+const cleanId = (value) => Number.isSafeInteger(Number(value)) && Number(value) > 0 && Number(value) < 100000 ? Number(value) : null;
+const numberLabel = (id) => `#${String(id).padStart(4, '0')}`;
+const readableName = (name) => String(name ?? '').replaceAll('-', ' ').replace(/\b\p{L}/gu, c => c.toUpperCase());
+const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const artwork = (id) => `${IMAGE_BASE}/other/official-artwork/${Number(id)}.png`;
+const sprite = (id) => `${IMAGE_BASE}/${Number(id)}.png`;
+function generationForId(id) { return GENERATIONS.find(g => id >= g.start && id <= g.end) ?? null; }
+function normalizeSearch(value) { return String(value ?? '').trim().toLocaleLowerCase('pt-BR'); }
+function fromPokemonResource(raw) {
+  const id = Number(raw.url?.match(/\/pokemon\/(\d+)\//)?.[1]);
+  const name = String(raw.name ?? '');
+  if (!cleanId(id) || !/^[a-z0-9-]+$/.test(name)) return null;
+  return {id, name};
+}
+function filterPokemon(pokemon, {search = '', generation = 'all', sort = 'number', favoritesOnly = false, favoriteIds = []} = {}) {
+  const needle = normalizeSearch(search);
+  const fav = new Set(favoriteIds);
+  let found = pokemon.filter(p => {
+    if (favoritesOnly && !fav.has(p.id)) return false;
+    if (needle) {
+      const isNumber = /^#?\d+$/.test(needle);
+      if (isNumber ? p.id !== Number(needle.replace('#', '')) : !p.name.includes(needle)) return false;
+    }
+    if (generation === 'forms') return !generationForId(p.id);
+    if (generation !== 'all' && generationForId(p.id)?.id !== Number(generation)) return false;
+    return true;
+  });
+  if (sort === 'name') found = found.sort((a, b) => a.name.localeCompare(b.name));
+  else if (sort === 'numberDesc') found = found.sort((a, b) => b.id - a.id);
+  else found = found.sort((a, b) => a.id - b.id);
+  return found;
+}
+
+</script>
+<script>
+/* seed.js */
+/* Cartas de demonstração locais: permitem abrir o HTML e batalhar mesmo sem rede.
+   Valores numéricos são atributos-base conhecidos da série (amostra, não catálogo completo).
+   Quando a PokéAPI responde, ela continua sendo a fonte prioritária. */
+const DEMO_CARD_DATA = [
+  [1,'bulbasaur','grass','poison',45,49,49,65,65,45],
+  [2,'ivysaur','grass','poison',60,62,63,80,80,60],
+  [3,'venusaur','grass','poison',80,82,83,100,100,80],
+  [4,'charmander','fire',null,39,52,43,60,50,65],
+  [5,'charmeleon','fire',null,58,64,58,80,65,80],
+  [6,'charizard','fire','flying',78,84,78,109,85,100],
+  [7,'squirtle','water',null,44,48,65,50,64,43],
+  [8,'wartortle','water',null,59,63,80,65,80,58],
+  [9,'blastoise','water',null,79,83,100,85,105,78],
+  [10,'caterpie','bug',null,45,30,35,20,20,45],
+  [12,'butterfree','bug','flying',60,45,50,90,80,70],
+  [16,'pidgey','normal','flying',40,45,40,35,35,56],
+  [19,'rattata','normal',null,30,56,35,25,35,72],
+  [25,'pikachu','electric',null,35,55,40,50,50,90],
+  [26,'raichu','electric',null,60,90,55,90,80,110],
+  [27,'sandshrew','ground',null,50,75,85,20,30,40],
+  [37,'vulpix','fire',null,38,41,40,50,65,65],
+  [39,'jigglypuff','normal','fairy',115,45,20,45,25,20],
+  [41,'zubat','poison','flying',40,45,35,30,40,55],
+  [43,'oddish','grass','poison',45,50,55,75,65,30],
+  [50,'diglett','ground',null,10,55,25,35,45,95],
+  [52,'meowth','normal',null,40,45,35,40,40,90],
+  [54,'psyduck','water',null,50,52,48,65,50,55],
+  [58,'growlithe','fire',null,55,70,45,70,50,60],
+  [63,'abra','psychic',null,25,20,15,105,55,90],
+  [66,'machop','fighting',null,70,80,50,35,35,35],
+  [74,'geodude','rock','ground',40,80,100,30,30,20],
+  [77,'ponyta','fire',null,50,85,55,65,65,90],
+  [79,'slowpoke','water','psychic',90,65,65,40,40,15],
+  [81,'magnemite','electric','steel',25,35,70,95,55,45],
+  [92,'gastly','ghost','poison',30,35,30,100,35,80],
+  [95,'onix','rock','ground',35,45,160,30,45,70],
+  [104,'cubone','ground',null,50,50,95,40,50,35],
+  [133,'eevee','normal',null,55,55,50,45,65,55],
+  [134,'vaporeon','water',null,130,65,60,110,95,65],
+  [135,'jolteon','electric',null,65,65,60,110,95,130],
+  [136,'flareon','fire',null,65,130,60,95,110,65],
+  [143,'snorlax','normal',null,160,110,65,65,110,30],
+  [149,'dragonite','dragon','flying',91,134,95,100,100,80],
+  [150,'mewtwo','psychic',null,106,110,90,154,90,130],
+  [151,'mew','psychic',null,100,100,100,100,100,100],
+  [152,'chikorita','grass',null,45,49,65,49,65,45],
+  [155,'cyndaquil','fire',null,39,52,43,60,50,65],
+  [158,'totodile','water',null,50,65,64,44,48,43],
+  [179,'mareep','electric',null,55,40,40,65,45,35],
+  [181,'ampharos','electric',null,90,75,85,115,90,55],
+  [196,'espeon','psychic',null,65,65,60,130,95,110],
+  [197,'umbreon','dark',null,95,65,110,60,130,65],
+  [252,'treecko','grass',null,40,45,35,65,55,70],
+  [255,'torchic','fire',null,45,60,40,70,50,45],
+  [258,'mudkip','water',null,50,70,50,50,50,40],
+  [282,'gardevoir','psychic','fairy',68,65,65,125,115,80],
+  [448,'lucario','fighting','steel',70,110,70,115,70,90],
+  [445,'garchomp','dragon','ground',108,130,95,80,85,102],
+  [658,'greninja','water','dark',72,95,67,103,71,122],
+  [700,'sylveon','fairy',null,95,65,65,110,130,60],
+  [778,'mimikyu','ghost','fairy',55,90,80,50,105,96],
+  [815,'cinderace','fire',null,80,116,75,65,75,119],
+  [887,'dragapult','dragon','ghost',88,120,75,100,75,142],
+  [906,'sprigatito','grass',null,40,61,54,45,45,65],
+  [909,'fuecoco','fire',null,67,45,59,63,40,36],
+  [912,'quaxly','water',null,55,65,45,50,45,50]
+];
+const DEMO_STAT_NAMES = ['hp','attack','defense','special-attack','special-defense','speed'];
+const DEMO_CATALOG = DEMO_CARD_DATA.map(row => ({id: row[0], name: row[1]}));
+const DEMO_DETAILS = new Map(DEMO_CARD_DATA.map(row => [row[0], {
+  id:row[0], name:row[1], types:[row[2], row[3]].filter(Boolean),
+  height:0, weight:0, baseExperience:0, abilities:[], species:row[1], demo:true,
+  stats:DEMO_STAT_NAMES.map((name, i) => ({name, value:row[i+4]}))
+}]));
+function getDemoPokemon(id) { return DEMO_DETAILS.get(Number(id)) || null; }
+
+</script>
+<script>
+/* storage.js */
+
+const USER_KEY = 'pokeatlas:v1:collection';
+const API_PREFIX = 'pokeatlas:v1:api:';
+let memoryCollection = null;
+const memoryCache = new Map();
+// crypto.randomUUID can be unavailable in some local-file/opaque-origin contexts.
+function newCollectionId() { return globalThis.crypto?.randomUUID?.() || `team-${Date.now()}-${Math.random().toString(36).slice(2, 14)}`; }
+
+function storeGet(key) { try { return localStorage.getItem(key); } catch { return null; } }
+function storeSet(key, value) { try { localStorage.setItem(key, value); return true; } catch { return false; } }
+
+function sanitizeCollection(value) {
+  const raw = value && typeof value === 'object' ? value : {};
+  const favorites = [...new Set((Array.isArray(raw.favorites) ? raw.favorites : []).map(cleanId).filter(Boolean))].slice(0, 20000);
+  const teams = (Array.isArray(raw.teams) ? raw.teams : []).slice(0, 60).map(team => {
+    const members = [...new Set((Array.isArray(team?.members) ? team.members : []).map(cleanId).filter(Boolean))].slice(0, 6);
+    return {id: typeof team?.id === 'string' && /^[a-zA-Z0-9-]{4,80}$/.test(team.id) ? team.id : newCollectionId(), name: String(team?.name ?? '').trim().slice(0, 48) || 'Minha equipe', members};
+  });
+  const notes = {};
+  if (raw.notes && typeof raw.notes === 'object' && !Array.isArray(raw.notes)) {
+    for (const [key, text] of Object.entries(raw.notes).slice(0, 500)) {
+      if (cleanId(key) && typeof text === 'string') notes[key] = text.slice(0, 700);
+    }
+  }
+  return {version: 1, favorites, teams, notes};
+}
+
+function readCollection() {
+  if (memoryCollection) return structuredClone(memoryCollection);
+  try { return sanitizeCollection(JSON.parse(storeGet(USER_KEY) || '{}')); }
+  catch { return sanitizeCollection({}); }
+}
+function writeCollection(value) {
+  const sanitized = sanitizeCollection(value);
+  memoryCollection = sanitized;
+  storeSet(USER_KEY, JSON.stringify(sanitized));
+  document.dispatchEvent(new CustomEvent('pokeatlas:collection-changed'));
+  return sanitized;
+}
+function toggleFavorite(id) {
+  id = cleanId(id);
+  if (!id) return false;
+  const c = readCollection();
+  c.favorites = c.favorites.includes(id) ? c.favorites.filter(x => x !== id) : [...c.favorites, id];
+  writeCollection(c);
+  return c.favorites.includes(id);
+}
+function createTeam(name) {
+  const clean = String(name ?? '').trim();
+  if (!clean || clean.length > 48) throw new Error('Informe um nome de equipe com até 48 caracteres.');
+  const c = readCollection();
+  if (c.teams.length >= 60) throw new Error('Limite de 60 equipes atingido.');
+  const team = {id: newCollectionId(), name: clean, members: []};
+  c.teams.push(team);
+  writeCollection(c);
+  return team;
+}
+function deleteTeam(teamId) {
+  const c = readCollection();
+  c.teams = c.teams.filter(t => t.id !== teamId);
+  writeCollection(c);
+}
+function addToTeam(teamId, pokemonId) {
+  const c = readCollection();
+  const team = c.teams.find(t => t.id === teamId);
+  const id = cleanId(pokemonId);
+  if (!team || !id) throw new Error('Equipe ou Pokémon inválido.');
+  if (team.members.includes(id)) throw new Error('Este Pokémon já está na equipe.');
+  if (team.members.length >= 6) throw new Error('A equipe já possui 6 Pokémon.');
+  team.members.push(id);
+  writeCollection(c);
+  return team;
+}
+function removeFromTeam(teamId, pokemonId) {
+  const c = readCollection();
+  const team = c.teams.find(t => t.id === teamId);
+  if (!team) return;
+  team.members = team.members.filter(id => id !== Number(pokemonId));
+  writeCollection(c);
+}
+function saveNote(id, note) {
+  const c = readCollection();
+  const safeId = cleanId(id);
+  if (!safeId) throw new Error('Pokémon inválido.');
+  const cleanNote = String(note ?? '').trim().slice(0, 700);
+  if (cleanNote) c.notes[safeId] = cleanNote;
+  else delete c.notes[safeId];
+  writeCollection(c);
+}
+function importCollection(text) {
+  if (typeof text !== 'string' || text.length > 1500000) throw new Error('Arquivo de backup grande demais.');
+  let raw;
+  try {raw = JSON.parse(text);} catch {throw new Error('Este arquivo não contém JSON válido.');}
+  if (!raw || typeof raw !== 'object' || Number(raw.version) !== 1 || !Array.isArray(raw.favorites) || !Array.isArray(raw.teams)) throw new Error('Formato de backup incompatível.');
+  return writeCollection(raw);
+}
+function exportCollection() {
+  const data = JSON.stringify({...readCollection(), exportedAt: new Date().toISOString()}, null, 2);
+  const url = URL.createObjectURL(new Blob([data], {type: 'application/json'}));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `pokeatlas-colecao-${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function readApiCache(key, {stale = false} = {}) {
+  let obj = memoryCache.get(key);
+  if (!obj) {
+    try {obj = JSON.parse(storeGet(API_PREFIX + key) || 'null');} catch {obj = null;}
+  }
+  if (!obj || typeof obj.expires !== 'number' || !('value' in obj)) return null;
+  if (!stale && Date.now() >= obj.expires) return null;
+  return obj.value;
+}
+function writeApiCache(key, value, ttlMs) {
+  const obj = {value, expires: Date.now() + ttlMs};
+  memoryCache.set(key, obj);
+  storeSet(API_PREFIX + key, JSON.stringify(obj));
+}
+
+</script>
+<script>
+/* api.js */
+
+const ORIGIN = 'https://pokeapi.co';
+const BASE = `${ORIGIN}/api/v2/`;
+const ONE_DAY = 86400000;
+class ApiError extends Error {
+  constructor(message, {status = 0, cause} = {}) {super(message, {cause}); this.name = 'ApiError'; this.status = status;}
+}
+
+async function getJson(path, {ttlMs = ONE_DAY, project = x => x, timeoutMs = 15000} = {}) {
+  // Never use arbitrary external URLs: only fixed API resources are allowed.
+  const target = new URL(path, BASE);
+  if (target.origin !== ORIGIN || !target.pathname.startsWith('/api/v2/')) throw new ApiError('Destino da API não permitido.');
+  const key = `${target.pathname}${target.search}`;
+  const cached = readApiCache(key);
+  if (cached !== null) {document.dispatchEvent(new CustomEvent('pokeatlas:cache', {detail: {hit: true}})); return cached;}
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(target.href, {method: 'GET', redirect: 'follow', signal: controller.signal, headers: {Accept: 'application/json'}});
+    document.dispatchEvent(new CustomEvent('pokeatlas:http', {detail: {status: response.status, redirected: response.redirected, url: response.url}}));
+    // Browsers follow HTTP 301/302 automatically: `status` here is the final status.
+    if (!response.ok) {
+      if (response.status === 404) throw new ApiError('Pokémon não encontrado na PokéAPI.', {status: 404});
+      if (response.status === 429) throw new ApiError('A PokéAPI está ocupada. Tente novamente mais tarde.', {status: 429});
+      throw new ApiError(`PokéAPI retornou HTTP ${response.status}.`, {status: response.status});
+    }
+    const finalUrl = new URL(response.url || target.href);
+    if (finalUrl.origin !== ORIGIN) throw new ApiError('A API redirecionou para um destino inesperado.');
+    if (!response.headers.get('content-type')?.includes('json')) throw new ApiError('A PokéAPI retornou um formato inesperado.');
+    const data = project(await response.json());
+    writeApiCache(key, data, ttlMs);
+    return data;
+  } catch (error) {
+    const old = readApiCache(key, {stale: true});
+    if (old !== null) {
+      document.dispatchEvent(new CustomEvent('pokeatlas:stale', {detail: {key}}));
+      return old;
+    }
+    if (error.name === 'AbortError') throw new ApiError('A requisição demorou demais. Confira sua conexão.', {cause: error});
+    if (error instanceof ApiError) throw error;
+    throw new ApiError('Não foi possível conectar à PokéAPI. Confira a internet ou o bloqueio por CORS.', {cause: error});
+  } finally {clearTimeout(timer);}
+}
+
+async function getCatalog() {
+  const all = []; let offset = 0; const limit = 1000;
+  // The API is paginated. We fetch the compact name index, NOT the details for every Pokemon.
+  try {
+  for (let page = 0; page < 6; page++) {
+    const data = await getJson(`pokemon?limit=${limit}&offset=${offset}`, {
+      ttlMs: 3 * ONE_DAY,
+      project: raw => ({count: Number(raw.count) || 0, items: (Array.isArray(raw.results) ? raw.results : []).map(fromPokemonResource).filter(Boolean)})
+    });
+    all.push(...data.items);
+    offset += data.items.length;
+    if (offset >= data.count || data.items.length === 0) break;
+  }
+  return [...new Map(all.map(p => [p.id, p])).values()].sort((a, b) => a.id - b.id);
+  } catch (error) {
+    if (all.length) return [...new Map(all.map(p => [p.id, p])).values()].sort((a,b) => a.id-b.id);
+    document.dispatchEvent(new CustomEvent('pokeatlas:demo', {detail:{error: error.message}}));
+    return DEMO_CATALOG;
+  }
+}
+
+function normalizeDetails(raw) {
+  const id = Number(raw.id);
+  if (!Number.isSafeInteger(id) || id <= 0) throw new ApiError('Resposta inválida de Pokémon.');
+  return {
+    id, name: String(raw.name ?? ''), height: Number(raw.height) || 0, weight: Number(raw.weight) || 0,
+    baseExperience: Number(raw.base_experience) || 0,
+    types: (raw.types ?? []).map(t => String(t.type?.name ?? '')).filter(Boolean),
+    abilities: (raw.abilities ?? []).map(a => ({name: String(a.ability?.name ?? ''), hidden: Boolean(a.is_hidden)})).filter(a => a.name),
+    stats: (raw.stats ?? []).map(s => ({name: String(s.stat?.name ?? ''), value: Number(s.base_stat) || 0})),
+    species: String(raw.species?.name ?? '')
+  };
+}
+async function getPokemon(id) {
+  if (!Number.isSafeInteger(Number(id)) || Number(id) < 1 || Number(id) > 100000) throw new ApiError('Identificador inválido.');
+  try {return await getJson(`pokemon/${Number(id)}`, {ttlMs: 7 * ONE_DAY, project: normalizeDetails});}
+  catch (error) {
+    const demo = getDemoPokemon(id);
+    if (demo) {document.dispatchEvent(new CustomEvent('pokeatlas:demo', {detail:{error: error.message}}));return demo;}
+    throw error;
+  }
+}
+async function getSpecies(name) {
+  if (typeof name !== 'string' || !/^[a-z0-9-]+$/.test(name)) return {description: 'Conheça esse Pokémon explorando suas habilidades e estatísticas.'};
+  return getJson(`pokemon-species/${name}`, {ttlMs: 7 * ONE_DAY, project: raw => {
+    const entries = Array.isArray(raw.flavor_text_entries) ? raw.flavor_text_entries : [];
+    const match = entries.find(e => e.language?.name === 'pt') || entries.find(e => e.language?.name === 'en');
+    return {description: String(match?.flavor_text || 'Informações da espécie indisponíveis.').replace(/[\n\f\r]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 550)};
+  }});
+}
+
+</script>
+<script>
+/* battle.js */
+/* Regras puras, sem DOM e sem dependência de backend. */
+const BattleEngine = (() => {
+  const ATTRIBUTES = Object.freeze([
+    ['hp','HP'], ['attack','Ataque'], ['defense','Defesa'],
+    ['special-attack','Ataque especial'], ['special-defense','Defesa especial'], ['speed','Velocidade']
+  ]);
+  const NAMES = Object.fromEntries(ATTRIBUTES);
+  function stat(pokemon, key) {
+    const match = (pokemon?.stats || []).find(s => s.name === key);
+    const value = Number(match?.value);
+    if (!Number.isFinite(value) || value < 0) throw new Error(`Estatística ${key} indisponível.`);
+    return value;
+  }
+  function compare(player, cpu, attribute) {
+    if (!NAMES[attribute]) throw new Error('Atributo de batalha inválido.');
+    const left = stat(player, attribute), right = stat(cpu, attribute);
+    const winner = left === right ? 'tie' : left > right ? 'player' : 'cpu';
+    return {attribute, label: NAMES[attribute], playerValue:left, cpuValue:right, difference:Math.abs(left-right), winner};
+  }
+  function randomFrom(list, exclude = null, rng = Math.random) {
+    const candidates = list.filter(p => Number(p.id) !== Number(exclude));
+    const pool = candidates.length ? candidates : list;
+    if (!pool.length) throw new Error('Nenhuma carta disponível para o sorteio.');
+    const index = Math.min(pool.length-1, Math.max(0, Math.floor(rng()*pool.length)));
+    return pool[index];
+  }
+  function randomAttribute(rng = Math.random) {
+    return ATTRIBUTES[Math.min(ATTRIBUTES.length-1, Math.max(0, Math.floor(rng()*ATTRIBUTES.length)))][0];
+  }
+  function nextScore(score, winner) {
+    const result = {player:score.player+(winner==='player'?1:0), cpu:score.cpu+(winner==='cpu'?1:0)};
+    return { ...result, finished: result.player >= 2 || result.cpu >= 2,
+      champion: result.player >= 2 ? 'player' : result.cpu >= 2 ? 'cpu' : null};
+  }
+  return Object.freeze({ATTRIBUTES,NAMES,stat,compare,randomFrom,randomAttribute,nextScore});
+})();
+
+</script>
+<script>
+/* battle-ui.js */
+/* Apresentação da arena: usa apenas as funções clássicas carregadas antes de app.js. */
+const BattleUI = (() => {
+  let picked = {player:null,cpu:null};
+  let score = {player:0,cpu:0};
+  let history = [];
+  let busy = false;
+  let finished = false;
+  let catalogGetter = () => [];
+  let toaster = () => {};
+  const byId = id => document.getElementById(id);
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  function setup({getCatalogItems, toastMessage}) {
+    catalogGetter = getCatalogItems;
+    toaster = toastMessage;
+    for (const side of ['player','cpu']) {
+      const search = byId(side==='player' ? 'battlePlayerSearch' : 'battleCpuSearch');
+      search.addEventListener('input', () => choices(side));
+      search.addEventListener('focus', () => choices(side));
+    }
+    render();
+  }
+  function choices(side) {
+    const input = byId(side==='player' ? 'battlePlayerSearch' : 'battleCpuSearch');
+    const target = byId(side==='player' ? 'battlePlayerChoices' : 'battleCpuChoices');
+    const inputValue = input.value.trim().toLowerCase();
+    if (!inputValue) {target.innerHTML='';return;}
+    const list = catalogGetter();
+    const matches = list.filter(p => p.name.includes(inputValue) || String(p.id)===inputValue.replace(/^#/, '')).slice(0, 9);
+    target.innerHTML = matches.length ? matches.map(p => `<button type="button" class="battle-option" data-action="battle-pick" data-side="${side}" data-id="${p.id}"><img src="${sprite(p.id)}" alt="" loading="lazy"><span>${escapeHtml(readableName(p.name))}</span><small>${numberLabel(p.id)}</small></button>`).join('') : '<p class="battle-no-matches">Nenhum resultado nesta busca.</p>';
+  }
+  function select(side, id) {
+    if (busy || finished) return;
+    const p = catalogGetter().find(item => item.id===Number(id)) || DEMO_CATALOG.find(item => item.id===Number(id));
+    if (!p) {toaster('Esta carta não foi encontrada no catálogo.', true); return;}
+    picked[side]=p;
+    const field = byId(side==='player'?'battlePlayerSearch':'battleCpuSearch');
+    field.value='';
+    byId(side==='player'?'battlePlayerChoices':'battleCpuChoices').innerHTML='';
+    render();
+  }
+  function random(side) {
+    if (busy || finished) return;
+    try {select(side,BattleEngine.randomFrom(catalogGetter().length ? catalogGetter() : DEMO_CATALOG, side==='cpu' ? picked.player?.id : null).id);}
+    catch (error) {toaster(error.message,true);}
+  }
+  function card(p, isCpu, reveal = false) {
+    if (!p || isCpu && !reveal) return `<div class="battle-card-placeholder${isCpu ? ' battle-card-placeholder--hidden' : ''}">${isCpu?'?':'✦'}<span>${isCpu ? (p?'CARTA SECRETA PRONTA':'ADVERSÁRIO MISTERIOSO') : 'ESCOLHA SEU POKÉMON'}</span></div>`;
+    return `<div class="battle-card-art"><span class="battle-card-id">${numberLabel(p.id)}</span><img data-pokemon-image data-fallback="0" src="${artwork(p.id)}" alt="${escapeHtml(readableName(p.name))}"><strong>${escapeHtml(readableName(p.name))}</strong></div>`;
+  }
+  function render() {
+    byId('battleYourScore').textContent=score.player;
+    byId('battleCpuScore').textContent=score.cpu;
+    byId('battleRoundText').textContent=finished ? 'Duelo encerrado' : `Rodada ${Math.min(3,score.player+score.cpu+1)}`;
+    if (!busy) {
+      byId('battlePlayerCard').innerHTML=card(picked.player,false,true);
+      byId('battleCpuCard').innerHTML=card(picked.cpu,true,false);
+    }
+    byId('battleFightButton').disabled=busy||finished||!picked.player;
+    byId('battleFightButton').textContent=busy?'⚡ PREPARANDO DUELO...':finished?'DUELO CONCLUÍDO':'⚔ INICIAR BATALHA';
+    byId('battlePlayerSearch').disabled=busy||finished;
+    byId('battleCpuSearch').disabled=busy||finished;
+    document.querySelectorAll('.battle-random').forEach(b=>b.disabled=busy||finished);
+    byId('battleHistory').innerHTML=history.length ? history.map((item,i) => `<li><span>R${i+1} · ${escapeHtml(item.player)} × ${escapeHtml(item.cpu)}</span><strong>${escapeHtml(item.summary)}</strong></li>`).join('') : '<li>Nenhuma rodada disputada ainda.</li>';
+  }
+  async function fight() {
+    if (busy||finished) return;
+    if (!picked.player) {toaster('Escolha sua carta ou utilize o sorteio!',true);return;}
+    busy=true;
+    const left=picked.player;
+    const right=picked.cpu || BattleEngine.randomFrom(catalogGetter().length ? catalogGetter() : DEMO_CATALOG,left.id);
+    const chosen=byId('battleAttribute').value;
+    const attribute=chosen==='random' ? BattleEngine.randomAttribute() : chosen;
+    const resultBox=byId('battleResult');
+    resultBox.hidden=true;
+    byId('battlePlayerSide').className='battle-side battle-side--charging';
+    byId('battleCpuSide').className='battle-side battle-side--cpu battle-side--charging';
+    byId('battleHint').textContent='⚡ Consultando atributos e preparando a arena...';
+    render();
+    try {
+      const [p, c] = await Promise.all([getPokemon(left.id),getPokemon(right.id)]);
+      byId('battleHint').textContent='3... 2... 1... BATALHA!';
+      await sleep(550);
+      byId('battleCpuCard').innerHTML=card(right,true,true);
+      await sleep(400);
+      const round=BattleEngine.compare(p,c,attribute);
+      const next=BattleEngine.nextScore(score,round.winner);
+      score={player:next.player,cpu:next.cpu};
+      finished=next.finished;
+      const quality=(p.demo||c.demo)?'MODO DEMONSTRAÇÃO • atributos locais':'PokéAPI • atributos oficiais';
+      byId('battleModeBadge').textContent=quality;
+      const result=round.winner==='tie'?'EMPATE!':round.winner==='player'?'VOCÊ VENCEU!':'COMPUTADOR VENCEU!';
+      const summary=`${round.label}: ${round.playerValue} × ${round.cpuValue} · ${result}`;
+      history.push({player:readableName(left.name),cpu:readableName(right.name),summary});
+      resultBox.className='battle-result battle-result--'+round.winner;
+      resultBox.innerHTML=`<span class="battle-result-kicker">${escapeHtml(round.label.toUpperCase())}</span><h3>${result}</h3><p>${escapeHtml(readableName(left.name))} <strong>${round.playerValue}</strong> <span>×</span> <strong>${round.cpuValue}</strong> ${escapeHtml(readableName(right.name))}</p>${finished?`<div class="battle-champion">${next.champion==='player'?'🏆 VOCÊ É O CAMPEÃO DA ARENA!':'🏆 VITÓRIA DO COMPUTADOR'} · ${score.player} × ${score.cpu}</div>`:'<small>Escolha novas cartas para a próxima rodada ou mantenha a sua.</small>'}`;
+      resultBox.hidden=false;
+      byId('battlePlayerSide').className='battle-side '+(round.winner==='player'?'battle-side--winner':round.winner==='cpu'?'battle-side--loser':'battle-side--draw');
+      byId('battleCpuSide').className='battle-side battle-side--cpu '+(round.winner==='cpu'?'battle-side--winner':round.winner==='player'?'battle-side--loser':'battle-side--draw');
+      byId('battleHint').textContent=finished?'Duelo concluído! Clique em “Novo duelo” para recomeçar.':'Próxima rodada: altere a carta, o atributo ou lute novamente.';
+      picked.cpu=null;
+    } catch (error) {
+      byId('battleHint').textContent='Não foi possível carregar os atributos desta dupla. Escolha outra carta ou tente novamente.';
+      toaster(error.message,true);
+    } finally {
+      busy=false;render();
+      // Keep the revealed CPU card until the next selection or round.
+      if (history.length) byId('battleCpuCard').innerHTML=card(right,true,true);
+    }
+  }
+  function reset() {
+    if (busy) return;
+    picked={player:null,cpu:null};score={player:0,cpu:0};history=[];finished=false;
+    for (const side of ['Player','Cpu']) {byId(`battle${side}Search`).value='';byId(`battle${side}Choices`).innerHTML='';}
+    byId('battleResult').hidden=true;
+    byId('battleModeBadge').textContent='Atributos da PokéAPI';
+    byId('battleHint').textContent='Escolha sua carta. O computador receberá uma carta aleatória se você não escolher.';
+    byId('battlePlayerSide').className='battle-side';byId('battleCpuSide').className='battle-side battle-side--cpu';
+    render();
+  }
+  return Object.freeze({setup,select,random,fight,reset,render});
+})();
+
+</script>
+<script>
+/* app.js */
+
+const $ = (id) => document.getElementById(id);
+const el = {
+  grid: $('catalogGrid'), loading: $('loadingGrid'), results: $('resultsLabel'), empty: $('emptyState'), emptyMessage: $('emptyMessage'), more: $('loadMoreWrap'),
+  search: $('searchInput'), generation: $('generationSelect'), sort: $('sortSelect'), catalogArea: $('catalogArea'), teamsArea: $('teamsArea'),
+  detailDialog: $('detailDialog'), detailContent: $('detailContent'), teamDialog: $('teamDialog'), teamForm: $('teamForm'), teamName: $('teamName'),
+  pickDialog: $('pickTeamDialog'), pickOptions: $('pickTeamOptions'), toast: $('toastRegion'), importInput: $('importInput'),
+};
+let catalog = [];
+let activeView = 'catalog';
+let visibleCount = 24;
+let activePokemonId = null;
+let pendingTeamPokemonId = null;
+let currentDetail = null;
+let toastTimer = null;
+let requestToken = 0;
+let demoMode = false;
+
+function toast(message, isError = false) {
+  clearTimeout(toastTimer);
+  const node = document.createElement('div'); node.className = `toast${isError ? ' is-error' : ''}`; node.textContent = message;
+  el.toast.replaceChildren(node);
+  toastTimer = setTimeout(() => node.remove(), 4300);
+}
+function showStatus(message, mode = '') {
+  $('networkStatus').textContent = message;
+  $('networkDot').className = `online-dot${mode ? ` is-${mode}` : ''}`;
+}
+function updateCounters() {
+  const c = readCollection();
+  $('favoriteCount').textContent = c.favorites.length.toLocaleString('pt-BR');
+  $('navFavoriteCount').textContent = c.favorites.length;
+  $('teamCount').textContent = c.teams.length;
+  $('totalCount').textContent = catalog.length ? catalog.length.toLocaleString('pt-BR') : '—';
+}
+function cardTemplate(p, isFavorite) {
+  const gen = generationForId(p.id);
+  const label = gen ? `${gen.name} • G${gen.id}` : 'FORMA ESPECIAL';
+  const name = escapeHtml(readableName(p.name));
+  return `<article class="poke-card" aria-label="Carta de ${name}">
+    <div class="card-top"><span class="card-id">${numberLabel(p.id)}</span><span class="card-chip">${label}</span></div>
+    <div class="card-visual"><img data-pokemon-image data-fallback="0" src="${artwork(p.id)}" alt="${name}" loading="lazy" decoding="async"></div>
+    <div class="card-bottom"><div class="card-name" title="${name}">${name}</div><div class="card-category"><span>POKÉMON</span><span>✦ COLECIONÁVEL</span></div>
+    <div class="card-divider"></div>
+    <div class="card-controls"><button type="button" class="card-open" data-action="view-pokemon" data-id="${p.id}" aria-label="Ver detalhes de ${name}">Ver carta <span aria-hidden="true">↗</span></button>
+    <button type="button" class="card-favorite ${isFavorite ? 'is-favorite' : ''}" data-action="favorite" data-id="${p.id}" aria-label="${isFavorite ? 'Remover' : 'Adicionar'} ${name} ${isFavorite ? 'dos' : 'aos'} favoritos" aria-pressed="${isFavorite}">${isFavorite ? '♥' : '♡'}</button></div>
+    </div></article>`;
+}
+function filteredCatalog() {
+  return filterPokemon(catalog, {
+    search: el.search.value,
+    generation: el.generation.value,
+    sort: el.sort.value,
+    favoritesOnly: activeView === 'favorites',
+    favoriteIds: readCollection().favorites
+  });
+}
+function renderCatalog() {
+  if (activeView === 'teams') return;
+  const matches = filteredCatalog();
+  const current = matches.slice(0, visibleCount);
+  const favoriteIds = new Set(readCollection().favorites);
+  el.grid.innerHTML = current.map(p => cardTemplate(p, favoriteIds.has(p.id))).join('');
+  el.results.innerHTML = `<strong>${matches.length.toLocaleString('pt-BR')}</strong> ${matches.length === 1 ? 'Pokémon encontrado' : 'Pokémon encontrados'} <span>· exibindo ${current.length.toLocaleString('pt-BR')}</span>`;
+  const noData = matches.length === 0;
+  el.empty.hidden = !noData;
+  el.emptyMessage.textContent = activeView === 'favorites' && !el.search.value ? 'Você ainda não marcou nenhum favorito. Explore o álbum e clique no coração.' : 'Tente outro nome, número ou geração.';
+  el.more.hidden = matches.length <= visibleCount;
+  $('loadMoreButton').textContent = `Mostrar mais ${Math.min(24, matches.length - current.length)} cartas ↓`;
+}
+function openView(view) {
+  if (!['catalog','favorites','teams','battle'].includes(view)) return;
+  activeView = view;
+  document.querySelectorAll('[data-view]').forEach(node => {
+    const selected = node.dataset.view === view;
+    node.classList.toggle('is-active', selected && node.classList.contains('nav-btn'));
+    if (node.classList.contains('nav-btn')) {
+      if (selected) node.setAttribute('aria-current', 'page'); else node.removeAttribute('aria-current');
+    }
+  });
+  const headings = {
+    catalog: ['A SUA ENCICLOPÉDIA', 'O grande <em>Pokédex.</em>', 'Uma carta para cada descoberta. Encontre seu próximo favorito.'],
+    favorites: ['MINHA COLEÇÃO PARTICULAR', 'Meus <em>favoritos.</em>', 'Os Pokémon especiais que você guardou no coração.'],
+    teams: ['MONTE SEU TIME', 'Minhas <em>equipes.</em>', 'Reúna até seis Pokémon por equipe. Cada aventura começa com uma escolha.'],
+    battle: ['ARENA POKÉATLAS', 'Duelo de <em>cartas.</em>', 'Monte sua estratégia, sorteie adversários e dispute a melhor de três.']
+  };
+  const [kicker, title, description] = headings[view];
+  $('sectionKicker').textContent = kicker;
+  $('sectionTitle').innerHTML = title;
+  $('sectionDescription').textContent = description;
+  const isTeams = view === 'teams';
+  const isBattle = view === 'battle';
+  $('catalogControls').hidden = isTeams || isBattle;
+  el.catalogArea.hidden = isTeams || isBattle;
+  el.teamsArea.hidden = !isTeams;
+  $('battleArea').hidden = !isBattle;
+  visibleCount = 24;
+  if (isTeams) renderTeams(); else if (isBattle) BattleUI.render(); else renderCatalog();
+}
+function getNameById(id) { return catalog.find(p => p.id === id)?.name || `pokemon-${id}`; }
+function renderTeams() {
+  const collection = readCollection();
+  const header = `<div class="teams-heading"><p>${collection.teams.length} ${collection.teams.length === 1 ? 'equipe criada' : 'equipes criadas'} • máximo de 6 Pokémon em cada</p><button class="primary-btn" type="button" data-action="create-team">+ Nova equipe</button></div>`;
+  if (!collection.teams.length) {
+    el.teamsArea.innerHTML = `${header}<div class="team-empty"><div class="empty-icon">♜</div><h3>Sua aventura começa aqui</h3><p>Crie uma equipe e adicione seus Pokémon preferidos a partir das cartas do álbum.</p><button class="primary-btn" type="button" data-action="create-team">Criar minha primeira equipe ↗</button></div>`;
+    return;
+  }
+  const panels = collection.teams.map(team => {
+    const slots = [...team.members, ...Array(6 - team.members.length).fill(null)].map(id => id ? `<div class="team-member"><button type="button" class="remove-member" title="Remover Pokémon" aria-label="Remover ${escapeHtml(getNameById(id))}" data-action="remove-member" data-team="${escapeHtml(team.id)}" data-id="${id}">×</button><button type="button" style="background:transparent;border:0;color:inherit;width:100%;cursor:pointer" data-action="view-pokemon" data-id="${id}"><img data-pokemon-image data-fallback="0" src="${artwork(id)}" alt="" loading="lazy"><span>${escapeHtml(readableName(getNameById(id)))}</span></button></div>` : `<div class="team-member team-member--empty"><div>＋</div><small>Vaga livre</small></div>`).join('');
+    return `<article class="team-panel"><div class="team-panel-head"><div><h3>${escapeHtml(team.name)}</h3><p class="team-meta">${team.members.length}/6 MEMBROS</p></div><button type="button" class="team-delete" data-action="delete-team" data-team="${escapeHtml(team.id)}">Excluir</button></div><div class="team-members">${slots}</div></article>`;
+  }).join('');
+  el.teamsArea.innerHTML = `${header}<div class="team-grid">${panels}</div><p class="help-text" style="margin-top:16px">Para adicionar Pokémon a uma equipe, abra uma carta no álbum e clique em “Adicionar à equipe”.</p>`;
+}
+function updateCollectionUI() {
+  updateCounters();
+  if (activeView === 'teams') renderTeams(); else renderCatalog();
+  if (el.detailDialog.open && currentDetail) updateDialogFavoriteButton();
+}
+function updateDialogFavoriteButton() {
+  const button = $('detailFavoriteButton');
+  if (!button || !currentDetail) return;
+  const isFav = readCollection().favorites.includes(currentDetail.id);
+  button.textContent = isFav ? '♥ Remover favorito' : '♡ Adicionar aos favoritos';
+  button.setAttribute('aria-pressed', String(isFav));
+}
+function statLabel(name) {
+  return ({hp: 'HP', attack: 'Ataque', defense: 'Defesa', 'special-attack': 'Atq. especial', 'special-defense': 'Def. especial', speed: 'Velocidade'})[name] || readableName(name);
+}
+function detailTemplate(detail, species, note) {
+  const name = escapeHtml(readableName(detail.name));
+  const demoLabel = detail.demo ? '<span class="type-badge">CARTA DEMO • DADOS LOCAIS</span>' : '';
+  const types = detail.types.map(t => `<span class="type-badge">${escapeHtml(readableName(t))}</span>`).join('') || '<span class="type-badge">Desconhecido</span>';
+  const abilities = detail.abilities.map(a => `<span>${escapeHtml(readableName(a.name))}${a.hidden ? ' ✦ Oculta' : ''}</span>`).join('');
+  const stats = detail.stats.map(s => `<div class="stat-bar-row"><span>${escapeHtml(statLabel(s.name))}</span><strong>${s.value}</strong><div class="bar"><span style="width:${Math.min(100, Math.round(s.value / 255 * 100))}%"></span></div></div>`).join('');
+  return `<button type="button" class="dialog-close" data-action="close-detail" aria-label="Fechar detalhes">×</button>
+  <div class="detail-hero"><div class="detail-art"><img data-pokemon-image data-fallback="0" src="${artwork(detail.id)}" alt="${name}"></div><div class="detail-intro"><span class="detail-id">${numberLabel(detail.id)} • ${generationForId(detail.id)?.name?.toUpperCase() || 'FORMA ESPECIAL'}</span><h2>${name}</h2><div class="type-badges">${types}${demoLabel}</div><p>${escapeHtml(species.description)}</p><div class="detail-actions"><button id="detailFavoriteButton" type="button" class="primary-btn" data-action="favorite" data-id="${detail.id}">♡ Favoritar</button><button type="button" class="secondary-btn" data-action="pick-team" data-id="${detail.id}">♜ Adicionar à equipe</button></div></div></div>
+  <div class="detail-body"><div class="detail-row"><div class="detail-fact"><strong>${detail.demo ? '—' : (detail.height / 10).toLocaleString('pt-BR') + ' m'}</strong><small>ALTURA</small></div><div class="detail-fact"><strong>${detail.demo ? '—' : (detail.weight / 10).toLocaleString('pt-BR') + ' kg'}</strong><small>PESO</small></div><div class="detail-fact"><strong>${detail.demo ? '—' : detail.baseExperience}</strong><small>EXP. BASE</small></div></div><h3 class="detail-section-title">Estatísticas básicas</h3>${stats}<h3 class="detail-section-title">Habilidades</h3><div class="ability-tags">${abilities || '<span>Indisponíveis</span>'}</div><label class="note-label" for="pokemonNote">Anotação pessoal (salva só neste navegador)</label><textarea id="pokemonNote" class="note-field" maxlength="700" placeholder="Sua lembrança ou observação sobre este Pokémon...">${escapeHtml(note)}</textarea><button type="button" class="secondary-btn detail-save-note" data-action="save-note" data-id="${detail.id}">Salvar anotação</button></div>`;
+}
+async function showDetails(id) {
+  id = cleanId(id);
+  if (!id) return;
+  activePokemonId = id;
+  const token = ++requestToken;
+  currentDetail = null;
+  el.detailContent.innerHTML = '<div class="dialog-loading"><div class="empty-icon">◈</div><p>Consultando a ficha do Pokémon...</p></div>';
+  if (!el.detailDialog.open) el.detailDialog.showModal();
+  try {
+    const detail = await getPokemon(id);
+    let species = {description: 'Um Pokémon cheio de histórias para descobrir.'};
+    if (detail.species && !detail.demo) {
+      try { species = await getSpecies(detail.species); }
+      catch (error) { console.warn('Descrição da espécie indisponível:', error.message); }
+    }
+    if (token !== requestToken || !el.detailDialog.open) return;
+    currentDetail = detail;
+    el.detailContent.innerHTML = detailTemplate(detail, species, readCollection().notes[id] || '');
+    updateDialogFavoriteButton();
+  } catch (error) {
+    if (token !== requestToken) return;
+    el.detailContent.innerHTML = `<button type="button" class="dialog-close" data-action="close-detail" aria-label="Fechar">×</button><div class="detail-error"><div class="empty-icon">◈</div><h2>Não foi possível abrir esta carta</h2><p>${escapeHtml(error.message)}</p><button type="button" class="primary-btn" data-action="retry-detail" data-id="${id}">Tentar novamente ↗</button></div>`;
+  }
+}
+function pickTeam(pokemonId) {
+  pendingTeamPokemonId = cleanId(pokemonId);
+  if (!pendingTeamPokemonId) return;
+  const teams = readCollection().teams;
+  const options = teams.length ? teams.map(team => `<button type="button" class="pick-team-option" data-action="add-to-team" data-id="${pendingTeamPokemonId}" data-team="${escapeHtml(team.id)}" ${team.members.length >= 6 || team.members.includes(pendingTeamPokemonId) ? 'disabled' : ''}><span>${escapeHtml(team.name)}</span><small>${team.members.length}/6</small></button>`).join('') : '<p class="help-text">Nenhuma equipe cadastrada. Crie uma equipe primeiro.</p>';
+  el.pickOptions.innerHTML = options + `<button type="button" class="secondary-btn full-btn" data-action="create-team-from-pick">+ Criar equipe</button>`;
+  if (el.detailDialog.open) el.detailDialog.close();
+  el.pickDialog.showModal();
+}
+async function initialize() {
+  el.loading.hidden = false;
+  el.grid.hidden = true;
+  try {
+    catalog = await getCatalog();
+    updateCounters();
+    el.loading.hidden = true;
+    el.grid.hidden = false;
+    renderCatalog();
+    showStatus(demoMode ? 'Modo demonstração · sem API' : 'PokéAPI conectada', demoMode ? 'offline' : 'online');
+    if (!catalog.length) throw new Error('O catálogo veio vazio.');
+  } catch (error) {
+    el.loading.hidden = true;
+    el.grid.hidden = false;
+    el.grid.innerHTML = '';
+    el.empty.hidden = false;
+    $('resultsLabel').textContent = 'Falha ao carregar';
+    el.emptyMessage.textContent = error.message;
+    el.more.hidden = true;
+    showStatus('Sem conexão', 'offline');
+    toast(error.message, true);
+  }
+}
+
+document.addEventListener('pokeatlas:http', (event) => {
+  const {status, redirected} = event.detail;
+  showStatus(redirected ? `Redirecionado • HTTP ${status}` : `PokéAPI • HTTP ${status}`, status >= 200 && status < 300 ? 'online' : 'offline');
+});
+document.addEventListener('pokeatlas:demo', () => { demoMode = true; showStatus('Modo demonstração · offline', 'offline'); });
+document.addEventListener('pokeatlas:stale', () => {showStatus('Usando dados do cache local', 'offline'); toast('Sem conexão: exibindo dados já salvos no navegador.');});
+document.addEventListener('pokeatlas:collection-changed', updateCollectionUI);
+
+// A single event listener handles card actions, including cards added dynamically.
+document.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-action], [data-view]');
+  if (!button) return;
+  const {action, view, id, team} = button.dataset;
+  if (view) {openView(view); if (!button.classList.contains('nav-btn')) $('collection').scrollIntoView({behavior: 'smooth'}); return;}
+  try {
+    switch (action) {
+      case 'explore': openView('catalog'); $('collection').scrollIntoView({behavior:'smooth'}); break;
+      case 'battle-pick': BattleUI.select(button.dataset.side, id); break;
+      case 'battle-random': BattleUI.random(button.dataset.side); break;
+      case 'battle-fight': void BattleUI.fight(); break;
+      case 'battle-reset': BattleUI.reset(); break;
+      case 'view-pokemon': void showDetails(id); break;
+      case 'retry-detail': void showDetails(id); break;
+      case 'close-detail': el.detailDialog.close(); break;
+      case 'favorite': {
+        const added = toggleFavorite(id);
+        toast(added ? `${readableName(getNameById(Number(id)))} adicionado aos favoritos ♡` : 'Pokémon removido dos favoritos.');
+        break;
+      }
+      case 'pick-team': pickTeam(id); break;
+      case 'add-to-team': {
+        addToTeam(team, id);
+        el.pickDialog.close();
+        toast('Pokémon adicionado à equipe!');
+        break;
+      }
+      case 'remove-member': removeFromTeam(team, id); toast('Pokémon removido da equipe.'); break;
+      case 'create-team':
+        el.teamForm.reset(); $('teamFormError').textContent = ''; el.teamDialog.showModal(); el.teamName.focus(); break;
+      case 'create-team-from-pick': el.pickDialog.close(); el.teamForm.reset(); $('teamFormError').textContent = ''; el.teamDialog.showModal(); el.teamName.focus(); break;
+      case 'close-team-dialog': el.teamDialog.close(); break;
+      case 'close-pick-dialog': el.pickDialog.close(); break;
+      case 'delete-team': if (window.confirm('Excluir esta equipe?')) {deleteTeam(team); toast('Equipe excluída.');} break;
+      case 'save-note': saveNote(id, $('pokemonNote')?.value ?? ''); toast('Anotação salva neste navegador.'); break;
+      case 'export': exportCollection(); toast('Seu backup JSON foi gerado.'); break;
+      case 'import': el.importInput.click(); break;
+      case 'reset-filters': el.search.value = ''; el.generation.value = 'all'; el.sort.value = 'number'; openView('catalog'); break;
+    }
+  } catch (error) {toast(error.message, true);}
+});
+
+el.teamForm.addEventListener('submit', event => {
+  event.preventDefault();
+  try {
+    const team = createTeam(el.teamName.value);
+    el.teamDialog.close();
+    toast(`Equipe ${team.name} criada!`);
+    if (pendingTeamPokemonId) {
+      try {addToTeam(team.id, pendingTeamPokemonId); toast('Equipe criada e Pokémon adicionado!');}
+      catch (error) {toast(error.message, true);}
+      pendingTeamPokemonId = null;
+    }
+    openView('teams');
+  } catch (error) {$('teamFormError').textContent = error.message;}
+});
+for (const field of [el.search, el.generation, el.sort]) {
+  field.addEventListener(field === el.search ? 'input' : 'change', () => {visibleCount = 24; renderCatalog();});
+}
+$('loadMoreButton').addEventListener('click', () => {visibleCount += 24; renderCatalog();});
+el.importInput.addEventListener('change', async () => {
+  const file = el.importInput.files?.[0];
+  if (!file) return;
+  if (file.size > 1500000) {toast('O backup é grande demais.', true); el.importInput.value = ''; return;}
+  try {
+    const text = await file.text();
+    if (!window.confirm('Importar este backup substituirá seus favoritos, equipes e anotações atuais. Continuar?')) return;
+    importCollection(text); toast('Coleção importada com sucesso!');
+  } catch (error) {toast(error.message, true);}
+  finally {el.importInput.value = '';}
+});
+// Fail over from artwork → regular sprite → local placeholder.
+document.addEventListener('error', event => {
+  const img = event.target;
+  if (!(img instanceof HTMLImageElement) || !img.hasAttribute('data-pokemon-image')) return;
+  const stage = Number(img.dataset.fallback || 0);
+  const id = Number(img.src.match(/\/(\d+)\.png/)?.[1]);
+  if (stage === 0 && cleanId(id)) {img.dataset.fallback = '1'; img.src = sprite(id);}
+  else if (stage <= 1) {img.dataset.fallback = '2'; img.src = PLACEHOLDER_IMAGE;}
+}, true);
+document.addEventListener('keydown', event => {
+  const typing = ['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName);
+  if (event.key === '/' && !typing && ![el.detailDialog, el.teamDialog, el.pickDialog].some(d => d.open)) {
+    event.preventDefault(); el.search.focus(); $('collection').scrollIntoView({behavior:'smooth'});
+  }
+});
+el.detailDialog.addEventListener('close', () => {requestToken++; currentDetail = null; activePokemonId = null;});
+el.teamDialog.addEventListener('close', () => {if (!el.pickDialog.open) pendingTeamPokemonId = null;});
+el.pickDialog.addEventListener('close', () => {if (!el.teamDialog.open) pendingTeamPokemonId = null;});
+for (const dialog of [el.detailDialog, el.teamDialog, el.pickDialog]) {
+  dialog.addEventListener('click', event => {if (event.target === dialog) dialog.close();});
+}
+updateCounters();
+BattleUI.setup({getCatalogItems:() => catalog.length ? catalog : DEMO_CATALOG, toastMessage:toast});
+void initialize();
+
+</script>
+</body>
+</html>
